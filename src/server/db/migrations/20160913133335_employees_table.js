@@ -8,8 +8,8 @@ exports.up = function (knex, Promise) {
     table.foreign('restaurant_id').references('id').inTable('restaurants');
     table.timestamp('created_at').defaultTo(knex.fn.now());
   });
-}
+};
 
 exports.down = function (knex, Promise) {
   return knex.schema.dropTable('employees');
-}
+};
