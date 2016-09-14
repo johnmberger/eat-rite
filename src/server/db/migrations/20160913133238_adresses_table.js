@@ -1,11 +1,11 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('addresses', (table) => {
     table.increments();
-    table.string('line_1').notNullable();
-    table.string('line_2').notNullable();
-    table.string('email').notNullable();
-    table.string('password').notNullable();
-    table.boolean('is_admin').defaultTo(true);
+    table.string('line_1').notNullable().defaultTo('');
+    table.string('line_2');
+    table.string('city').notNullable().defaultTo('');
+    table.string('state', 2).notNullable().defaultTo('');
+    table.string('zip').notNullable().defaultTo('');
     table.timestamps(true, true);
   });
 };
