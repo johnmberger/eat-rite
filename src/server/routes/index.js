@@ -1,17 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const knex = require('../db/knex');
 
-const indexController = require('../controllers/index');
+router.get('/', (req, res, next) => {
 
-router.get('/', function (req, res, next) {
-  const renderObject = {};
-  renderObject.title = 'Welcome to Express!';
-  indexController.sum(1, 2, (error, results) => {
-    if (error) return next(error);
-    if (results) {
-      renderObject.sum = results;
-      res.render('index', renderObject);
-    }
+  knex('restaurants').select('*')
+  .then((restaurants) => {
+    res.render('index', {
+      title: 'Welcome to our site!',
+      restaurants
+    });
   });
 });
 

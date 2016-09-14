@@ -2,11 +2,23 @@
 
 {% block title %}{% endblock %}
 
+{% block css %}
+<link rel="stylesheet" href="/css/splash.css">
+{% endblock %}
+
 {% block content %}
 
-  <div class="container">
-    <h1>{{title}}</h1>
-    <h2>The sum is {{sum}}</h2>
+  <div class="jumbotron">
+    <h1 class="text-center">Eat Rite.</h1>
   </div>
+  <div class="container">
+    <h2 class="text-center">Featured Restaurants</h2>
+    {% for restaurant in restaurants %}
+    <div class="col-md-4">
+      <h2>{{restaurant.name}}</h2>
+    </div>
+    {% endfor %}
+  </div>
+
 
 {% endblock %}
