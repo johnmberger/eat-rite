@@ -6,7 +6,7 @@
 
     // *** routes *** //
     const routes = require('../routes/index');
-    const review = require('../routes/review.html');
+    const review = require('../routes/review');
 
     // *** register routes *** //
     app.use('/', routes);
