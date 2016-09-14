@@ -1,0 +1,49 @@
+  <h2 style="text-align: center">Add a restaurant!</h2>
+
+  <form class="form-horizontal" action="/restaurants/add-a-rest" method="post">
+    <!-- name field -->
+    <div class="form-group-lg">
+      <label class="control-label" for="name">Name:</label>
+      <div class="">
+        <input type="text" name="name" class="form-control input-lg" id="rest-name" placeholder="Enter a restaurant name...">
+      </div>
+    </div>
+    <br>
+    <!-- location field -->
+    <div class="form-group-lg">
+      <label class="control-label" for="location">Location:</label>
+      <div class="">
+        <input type="text" name="location" class="form-control input-lg" id="rest-location" placeholder="Enter a location for your restaurant...">
+      </div>
+    </div>
+    <br>
+    <!-- cuisine field -->
+    <div class="form-group-lg">
+      <label class="control-label" for="cuisine">Cuisine:</label>
+      <div class="">
+        <input type="text" name="cuisine_type" class="form-control input-lg" id="rest-cuisine" placeholder="Enter a cuisine type for your restaurant...">
+      </div>
+    </div>
+    <br>
+    <!-- description field -->
+    <div class="form-group-lg">
+      <label class="control-label" for="description">Description:</label>
+      <div class="">
+        <textarea type="text" name="description" class="form-control input-lg" id="rest-description" placeholder="Enter a description for your restaurant..."></textarea>
+      </div>
+    </div>
+    <br>
+
+
+
+    <div class="form-group-lg">
+      <div class="col-lg-offset-3">
+        <button type="submit" class="btn btn-default">Add rest</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+</body>
+</html>
