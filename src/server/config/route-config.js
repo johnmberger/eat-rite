@@ -6,11 +6,11 @@
 
     // *** routes *** //
     const routes = require('../routes/index');
-    const review = require('../routes/review.html')
+    const review = require('../routes/review.html');
 
     // *** register routes *** //
     app.use('/', routes);
-    app.use('/review', review)
+    app.use('/review', review);
 
   };
 
