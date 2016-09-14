@@ -1,6 +1,6 @@
 const faker = require('faker');
 
-function addressPromise(knex) {
+function addressSeed(knex) {
   return knex('addresses').insert({
     line_1: faker.address.streetAddress(),
     city: faker.address.city(),
@@ -13,7 +13,7 @@ exports.seed = function (knex, Promise) {
   const iterationArray = new Array(50);
 
   let ArrayOfPromises = Array.from(iterationArray).map(() => {
-    return addressPromise(knex);
+    return addressSeed(knex);
   });
 
   return Promise.all(ArrayOfPromises);

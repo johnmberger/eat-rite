@@ -10,10 +10,10 @@ const cuisines = [
   'Mexican'
 ];
 
-function restaurantPromise(knex, id) {
+function restaurantSeed(knex, id) {
   return knex('restaurants').insert({
-    name: `${faker.name.firstName()}'s`,
-    cuisine_type: faker.random.number(cuisines.length - 1),
+    name: `${faker.commerce.productAdjective()} ${faker.name.firstName()}'s`,
+    cuisine_type: cuisines[faker.random.number(cuisines.length - 1)],
     description: faker.lorem.paragraph(),
     address_id: id
   });
@@ -22,9 +22,10 @@ function restaurantPromise(knex, id) {
 exports.seed = function (knex, Promise) {
   const iterationArray = new Array(50);
 
-  let ArrayOfPromises = Array.from(iterationArray).map((item, i) => {
+  let ArrayOfPromises = Array.from(iterationArray)
+  .map((item, i) => {
     let id = i + 1;
-    return restaurantPromise(knex, id);
+    return restaurantSeed(knex, id);
   });
 
   return Promise.all(ArrayOfPromises);
