@@ -35,6 +35,7 @@ function addRestPage(req, res, next) {
 
 function addRest(req, res, next) {
   if (req.body.name && req.body.cuisine_type && req.body.description && req.body.location) {
+
     // Rests.insert({
     //   name: req.body.name,
     //   cuisine_type: req.body.cuisine_type,

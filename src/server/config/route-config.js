@@ -11,7 +11,6 @@
     // *** register routes *** //
     app.use('/', routes);
     app.use('/restaurants', restaurants);
-    app.use('/restaurants', restaurants);
     app.use('/restaurants/add-restaurant', restaurants);
 
   };
