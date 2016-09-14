@@ -32,23 +32,7 @@ function oneRest(req, res, next) {
 function addRestPage(req, res, next) {
   res.render('restaurants/add-restaurant');
 }
-//
-// function addRest(req, res, next) {
-//   if (req.body.name && req.body.cuisine_type && req.body.description && req.body.location) {
-//     Rests.insert({
-//       name: req.body.name,
-//       cuisine_type: req.body.cuisine_type,
-//       location: req.body.location,
-//       description: req.body.description})
-//     .then(() => {
-//       console.log('Restaurant added');
-//       res.redirect('restaurants');
-//     });
-//   } else {
-//     console.log('One or more  text fields are empty');
-//     res.redirect('add-restaurant');
-//   }
-// }
+
 module.exports = {
   allRests,
   oneRest,
