@@ -15,7 +15,7 @@ function reviewSeed(knex) {
     restaurant_id: faker.random.number({
       min: 1,
       max: 50
-    }),
+    })
   });
 }
 exports.seed = function (knex, Promise) {
@@ -27,4 +27,4 @@ exports.seed = function (knex, Promise) {
   });
 
   return Promise.all(ArrayOfPromises);
-}
+};
