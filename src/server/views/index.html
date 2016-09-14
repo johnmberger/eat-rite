@@ -16,6 +16,8 @@
     {% for restaurant in restaurants %}
     <div class="col-md-4">
       <h2>{{restaurant.name}}</h2>
+      <h4>{{restaurant.cuisine_type}}</h4>
+      <h5>{{restaurant.city}}, {{restaurant.state}}</h5>
     </div>
     {% endfor %}
   </div>
