@@ -12,10 +12,11 @@
     <h1 class="text-center">Eat Rite.</h1>
   </div>
   <div class="container">
-    <h2 class="text-center">Featured Restaurants</h2>
+    <h1 class="text-center">Featured Restaurants</h1>
     {% for restaurant in restaurants %}
     <div class="col-md-4">
-      <h2>{{restaurant.name}}</h2>
+      <a href="/restaurant/{{restaurant.restaurant_id}}"><h3>{{restaurant.name}}</h3></a>
+      <a href="/restaurant/{{restaurant.restaurant_id}}"><img class="img-responsive" src="{{restaurant.url}}" alt="restaurant-image" /></a>
       <h4>{{restaurant.cuisine_type}}</h4>
       <h5>{{restaurant.city}}, {{restaurant.state}}</h5>
     </div>
