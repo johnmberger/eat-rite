@@ -5,7 +5,7 @@ exports.up = function (knex, Promise) {
     table.integer('rating').notNullable();
     table.integer('user_id').references('id').inTable('users');
     table.integer('restaurant_id').references('id').inTable('restaurants');
-    table.timestamps(true, true);
+    table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 }
 

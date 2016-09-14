@@ -6,7 +6,7 @@ exports.up = function (knex, Promise) {
     table.string('role').notNullable();
     table.integer('restaurant_id');
     table.foreign('restaurant_id').references('id').inTable('restaurants');
-    table.timestamps(true, true);
+    table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 }
 

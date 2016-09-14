@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     table.string('city').notNullable();
     table.string('state', 2).notNullable();
     table.string('zip').notNullable();
-    table.timestamps(true, true);
+    table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 };
 

@@ -1,9 +1,9 @@
 const faker = require('faker');
 
 const roles = [
-  'manager',
-  'employee',
-  'trainee'
+  'Manager',
+  'Employee',
+  'Trainee'
 ];
 
 function employeeSeed(knex) {
