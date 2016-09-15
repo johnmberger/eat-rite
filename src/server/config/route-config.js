@@ -8,7 +8,7 @@
     const routes = require('../routes/index');
     const newUser = require('../routes/newuser');
     const signIn = require('../routes/signin');
-    const restaurantRoute = require('../routes/restaurant');
+    const restaurant = require('../routes/restaurant');
     const restaurants = require('../routes/restaurants');
     const review = require('../routes/review');
 
@@ -16,9 +16,8 @@
     app.use('/', routes);
     app.use('/newuser', newUser);
     app.use('/signin', signIn);
-    app.use('/restaurant', restaurantRoute);
+    app.use('/restaurant', restaurant);
     app.use('/restaurants', restaurants);
-    app.use('/restaurants/add-restaurant', restaurants);
     app.use('/review', review);
   };
 
