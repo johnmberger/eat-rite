@@ -11,13 +11,22 @@ body {
   height: 100vh;
   width: 100vw;
 }
-.jumbotron h1 {
+.jumbotron div {
   color: white;
-  font-weight: bold;
-  font-size: 10rem;
-  line-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
   margin: 0;
 }
-.jumbotron h2 {
-  color: grey;
+.jumbotron h1 {
+  font-weight: bold;
+  font-size: 10rem;
+}
+a {
+  color: dimgrey;
+}
+.home-page-btn {
+  width: 15%;
+  margin: 20px auto;
 }
