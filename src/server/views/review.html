@@ -7,13 +7,13 @@
 
 {% block content %}
 
-
+  {% for rest in result %}
 <div class="container col-lg-3">
   <h1>{{title}}</h1>
 </div>
 <form class="form-horizontal col-lg-4">
   <fieldset>
-    <legend>Leave a review for {{rest.id}}!</legend>
+    <legend>Leave a review for {{rest.name}}!</legend>
     <div class="form-group">
       <label for="reviewDate" class="col-lg-2 control-label">Date of visit:</label>
       <div class="col-lg-10">
@@ -50,7 +50,7 @@
     </div>
   </fieldset>
 </form>
-
+{% endfor %}
 
 {% endblock %}
 
