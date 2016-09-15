@@ -27,17 +27,4 @@ router.get('/:id/new', (req, res, next) => {
   res.render('new', renderObj);
 });
 
-router.get('/:id/review', function (req, res, next) {
-  const renderObject = {};
-  renderObject.title = 'Review Page!';
-  indexController.sum(1, 2, (error, results) => {
-    if (error) return next(error);
-    if (results) {
-      renderObject.sum = results;
-      res.render('review', renderObject);
-    }
-  });
-});
-
-
 module.exports = router;
