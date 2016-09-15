@@ -33,8 +33,6 @@ function addRestPage(req, res, next) {
   res.render('restaurants/add-restaurant');
 }
 
-<<<<<<< HEAD
-=======
 function addRest(req, res, next) {
   if (req.body.name && req.body.cuisine_type && req.body.description && req.body.location) {
     console.log('hello');
@@ -53,7 +51,6 @@ function addRest(req, res, next) {
   }
 }
 
->>>>>>> 17dfbbb75d05c274e82a9a8a18c11601a2300b1f
 module.exports = {
   allRests,
   oneRest,
