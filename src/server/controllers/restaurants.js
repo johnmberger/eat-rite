@@ -1,11 +1,9 @@
-const db  = require('../db/knex');
-const Rests = db('restaurants');
-const reviews = db('reviews');
+const knex  = require('../db/knex');
 
 function allRests(req, res, next) {
-  //get books from db
-  Rests.select()
+  knex('restaurants').select()
   .then((results) => {
+    console.log(results);
     const renderObject = {};
     renderObject.title = 'All restaurants';
     renderObject.rests = results;
@@ -13,28 +11,6 @@ function allRests(req, res, next) {
   })
   .catch((err) => {
     return next(err);
-  });
-}
-
-function oneRest(req, res, next) {
-  let id = req.params.id;
-  Promise.all([Rests.where('id', id), reviews.where('restaurant_id', id)])
-  .then((result) => {
-    const reviews = result[1];
-    var total = null;
-    reviews.forEach(review => {
-      total += Number(review.rating);
-    });
-    var average = total / reviews.length;
-    const renderObject = {};
-    renderObject.title = result[0][0].name;
-    renderObject.rests = result[0];
-    renderObject.score = average;
-    if (result) {
-      res.status(200).render('restaurants/one-restaurant', renderObject);
-    } else {
-      res.status(404).send({message: 'Restaurant not found.'});
-    }
   });
 }
 
@@ -62,6 +38,5 @@ function addRest(req, res, next) {
 
 module.exports = {
   allRests,
-  oneRest,
   addRestPage
 };
