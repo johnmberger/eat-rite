@@ -12,18 +12,20 @@
 <div class="all-rests container">
   <br>
   <br>
-  {% for rest in rests %}
-  <div class="row book-row">
-    <div class="col-md-6 rest-pic">
+  <div class="row">
+    <div class="col-md-6">
       <img class="restaurantImage img-responsive" src="/img/{{rest.cuisine_type}}.jpeg">
+      {% for employee in employees %}
+      <div class="col-md-12">
+        <h2>{{employee.role}}</h2>
+        <h3>{{employee.first_name}} {{employee.last_name}}</h3>
+      </div>
+      {% endfor %}
     </div>
-    <div class="col-md-6 book-info">
-      <!-- edit link to edit THAT book -->
+    <div class="col-md-6">
       <a href="#" style="float: right" class="btn btn-primary">Edit</a>
-      <!-- delete link to delete THAT book -->
       <a href="#" style="float: right" class="btn btn-danger">Remove</a>
-      <!-- Write a new review-->
-      <a href="/review/{{rest.id}}" style="float: right" class="btn btn-success">Write a Review</a>
+      <a href="/review/{{id}}" style="float: right" class="btn btn-success">Write a Review</a>
 
       <h2>{{rest.name}}</h2>
 
@@ -31,7 +33,6 @@
       <p>{{rest.location}}</p>
       <p>{{rest.description}}</p>
       <hr>
-  {% endfor %}
       <div class="col-md-12">
         <h2 class>{{numberReviews}} Reviews</h2>
         {% for review in allReviews %}
@@ -44,7 +45,6 @@
         </div>
         {% endfor %}
       </div>
-
     </div>
   </div>
 </div>
