@@ -8,6 +8,7 @@
   <div class="row">
     <div class="col-xs-12">
 
+<form class="form-horizontal new_user_form" action="/newuser" method="post">
 
 <form class="form-horizontal new_user_form" action="/" method="post">
 
@@ -16,7 +17,7 @@
 
         <div class="form-group">
           <label for="first_name">First Name</label>
-          <input class="form-control" type="text" name="first_name" placeholder="First Name" maxlength="40" required>
+          <input class="form-control" type="text" name="first_name" placeholder="First Name" maxlength="40"  required>
         </div>
 
         <div class="form-group">
@@ -39,6 +40,8 @@
           <input class="form-control" type="password" name="confirm_password" minlength="8" required>
         </div>
 
+        {{alertMessage}}
+
         <div class="checkbox is_admin">
           <label>
             <input type="checkbox">I am admin.
@@ -48,7 +51,6 @@
         <div class="form-group">
           <input class="btn btn-submit btn-lg center-block newUserButton" type="submit" value="submit">
         </div>
-
       </div>
 </form>
 </div>
