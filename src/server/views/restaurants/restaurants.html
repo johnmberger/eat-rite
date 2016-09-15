@@ -26,12 +26,6 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6 portfolio-item">
-      <a href="/restaurants" type="button" class="btn btn-success btn-lg">Restaurants</a>
-    </div>
-  </div>
-
   <div class="all-rests container">
     <h2>Restaurant List</h2>
     {% for rest in rests %}
@@ -45,7 +39,7 @@
         <a href="#" style="float: right" class="btn btn-primary">Edit</a>
         <!-- delete link to delete THAT restaurant -->
         <a href="#" style="float: right" class="btn btn-danger">Remove</a>
-        <a href="/restaurants/{{rest.id}}"><h2>{{rest.name}}</h2></a>
+        <a href="/restaurant/{{rest.id}}"><h2>{{rest.name}}</h2></a>
 
         <p>{{rest.cuisine_type}}</p>
         <p>{{rest.location}}</p>
