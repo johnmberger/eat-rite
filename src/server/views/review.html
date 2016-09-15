@@ -1,18 +1,17 @@
 {% extends "_base.html" %}
 
 {% block title %}
-
+<link rel="stylesheet" href="/css/review.css">
 {% endblock %}
-{% block css %} <link rel="stylesheet" href="../client/css/review.css">
-{% endblock%}
+
 
 {% block content %}
 
 
-<div class="container">
+<div class="container col-lg-3">
   <h1>{{title}}</h1>
 </div>
-<form class="form-horizontal xl-col-3 lg-col-4 md-col-6 sm-col-7 xs-col-10">
+<form class="form-horizontal col-lg-4">
   <fieldset>
     <legend>Leave a review for ::NUNJUCKS RESTAURANT::!</legend>
     <div class="form-group">
@@ -26,51 +25,26 @@
       <div class="col-lg-10">
         <textarea class="form-control" rows="3" id="inputReview">Tell us about your experience at ::NUNJUCKS RESTAURANT::</textarea>
       </div>
-    </div>
+      <div>
+        <label for="rating" class="col-lg-2 control-label">Stars:</label>
 
-
-    <div class="form-group">
-      <label class="col-lg-2 control-label">How would you rate your experience?</label>
-      <div class="col-lg-10">
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="1Star" value="option1" checked="">
-            1
-          </label>
-          <label>
-            <input type="radio" name="optionsRadios" id="2Stars" value="option2">
-            2
-          </label>
-          <label>
-            <input type="radio" name="optionsRadios" id="2Stars" value="option2">
-            3
-          </label>
-          <label>
-            <input type="radio" name="optionsRadios" id="2Stars" value="option2">
-            4
-          </label>
-          <label>
-            <input type="radio" name="optionsRadios" id="2Stars" value="option2">
-            5
-          </label>
-        </div>
+        <fieldset class="rating giveStars">
+          <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+          <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+          <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+          <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+          <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+          <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+          <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+          <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+          <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+          <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+        </fieldset>
       </div>
     </div>
 
 
-    <h1>Star Rating</h1>
-    <form>
-      <fieldset>
-        <span class="star-cb-group">
-          <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
-          <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4</label>
-          <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
-          <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
-          <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
-          <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
-        </span>
-      </fieldset>
-    </form>
+
 
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
