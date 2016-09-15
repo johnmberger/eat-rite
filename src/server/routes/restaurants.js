@@ -7,4 +7,5 @@ const restsController = require('../controllers/restaurants');
 router.get('/', restsController.allRests);
 router.get('/add-restaurant', restsController.addRestPage);
 router.get('/:id', restsController.oneRest);
+
 module.exports = router;
