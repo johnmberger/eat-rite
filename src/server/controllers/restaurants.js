@@ -4,7 +4,7 @@ const states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI'
 function allRests(req, res, next) {
   knex('restaurants').select()
   .then((results) => {
-    console.log(results);
+    // console.log(results);
     const renderObject = {};
     renderObject.title = 'All restaurants';
     renderObject.rests = results;
