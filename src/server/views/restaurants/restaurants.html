@@ -1,0 +1,56 @@
+{% extends "_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+
+<div class="col-md-6 portfolio-item">
+  <a href="/" type="button" class="btn btn-primary btn-lg">HOME</a>
+  </a>
+</div>
+<br>
+<div class="col-md-6 portfolio-item">
+  <a href="/restaurants/add-restaurant" type="button" class="btn btn-success btn-lg">Add a restaurant!</a>
+  </a>
+</div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="page-header">Galvanize Restaurants</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 portfolio-item">
+      <a href="/restaurants" type="button" class="btn btn-success btn-lg">Restaurants</a>
+    </div>
+  </div>
+
+  <div class="all-rests">
+    <h2>Restaurant List</h2>
+    {% for rest in rests %}
+    <div class="row restaurant-row">
+      <div class="col-md-6 restaurant-pic">
+        <!-- add href to link to single restaurant -->
+        <!-- <img src="{{restaurant.cover_url}}"> -->
+        <a href="/restaurants/{{rest.id}}"><img src="http://placehold.it/170x170"></a>
+      </div>
+      <div class="col-md-6 restaurant-info">
+        <h4>Restaurant {{loop.index}}</h4>
+        <!-- edit link to edit THAT restaurant -->
+        <a href="#" style="float: right" class="btn btn-primary">Edit</a>
+        <!-- delete link to delete THAT restaurant -->
+        <a href="#" style="float: right" class="btn btn-danger">Remove</a>
+        <h2>{{rest.name}}</h2>
+
+        <p>{{rest.cuisine_type}}</p>
+        <p>{{rest.location}}</p>
+        <p>{{rest.description}}</p>
+        <hr>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}

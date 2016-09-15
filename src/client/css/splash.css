@@ -1,0 +1,32 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+.jumbotron {
+  background: url(../img/burger.jpeg);
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.jumbotron div {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+.jumbotron h1 {
+  font-weight: bold;
+  font-size: 10rem;
+}
+a {
+  color: dimgrey;
+}
+.home-page-btn {
+  width: 15%;
+  margin: 20px auto;
+}
