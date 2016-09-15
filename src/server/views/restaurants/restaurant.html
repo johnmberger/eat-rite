@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<h1>{{restaurant.name}}</h1>
+<div>
+  <img src="/img/{{restaurant.cuisine_type}}.jpeg">
+</div>
+<div>
+  <h4>{{restaurant.cuisine_type}}</h4>
+  <ul>
+    <li>{{restaurant.line_1}}</li>
+    {% if restaurant.line_2 %}
+    <li>{{restaurant.line_2}}</li>
+    {% endif %}
+    <li>{{restaurant.city}} {{restaurant.state}}, {{restaurant.zip}}</li>
+  </ul>
+  <p>{{restaurant.description}}</p>
+  
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/singleRestaurant"></script>
+{% endblock %}
