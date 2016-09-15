@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
-const validateFunc = require('../../client/js/main');
+const userFunctions = require('../../client/js/signinhelpers');
 
 router.get('/', function (req, res, next) {
   res.render('newUser', {title: 'New User Page'});
+
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', userFunctions.passwordValidation,  (req, res, next) => {
   let newUser = {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
@@ -15,10 +16,11 @@ router.post('/', (req, res, next) => {
     password: req.body.password,
     is_admin: req.body.is_admin
   };
+  console.log('rawr',  newUser);
   knex('users')
   .insert(newUser)
   .then (() => {
-    res.redirect('/', {title: 'SPLASH PAGE'});
+    res.redirect(' /newuser');
   });
 });
 
