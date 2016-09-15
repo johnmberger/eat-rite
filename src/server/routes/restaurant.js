@@ -7,14 +7,6 @@ router.get('/:id', (req, res, next) => {
   const searchID = req.params.id;
   const reviews = [];
 
-  oneRestC.getReviews(searchID, (err, result) => {
-    if (err) {
-      next(err);
-    } else {
-      reviews = result
-    }
-  });
-
   oneRestC.oneRest(searchID, (err, result) => {
     if (err) {
       next(err);
