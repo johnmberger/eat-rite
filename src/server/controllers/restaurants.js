@@ -33,27 +33,6 @@ function addRestPage(req, res, next) {
   res.render('restaurants/add-restaurant');
 }
 
-<<<<<<< HEAD
-=======
-function addRest(req, res, next) {
-  if (req.body.name && req.body.cuisine_type && req.body.description && req.body.location) {
-    console.log('hello');
-    // Rests.insert({
-    //   name: req.body.name,
-    //   cuisine_type: req.body.cuisine_type,
-    //   location: req.body.location,
-    //   description: req.body.description})
-    // .then(() => {
-    //   console.log('Restaurant added');
-    //   res.redirect('restaurants');
-    // });
-  } else {
-    console.log('One or more  text fields are empty');
-    res.redirect('add-restaurant');
-  }
-}
-
->>>>>>> 17dfbbb75d05c274e82a9a8a18c11601a2300b1f
 module.exports = {
   allRests,
   oneRest,
