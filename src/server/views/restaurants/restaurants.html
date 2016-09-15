@@ -2,6 +2,11 @@
 
 {% block title %}{% endblock %}
 
+{% block css %}
+<link rel="stylesheet" href="/css/allRestaurants.css">
+<link rel="stylesheet" href="/css/nav.css">
+{% endblock %}
+
 {% block content %}
 
 
@@ -34,7 +39,7 @@
       <div class="col-md-6 restaurant-pic">
         <!-- add href to link to single restaurant -->
         <!-- <img src="{{restaurant.cover_url}}"> -->
-        <a href="/restaurants/{{rest.id}}"><img src="http://placehold.it/170x170"></a>
+        <a href="/restaurants/{{rest.id}}"><img class="restaurantImage" src="/img/{{rest.cuisine_type}}.jpeg"></a>
       </div>
       <div class="col-md-6 restaurant-info">
         <h4>Restaurant {{loop.index}}</h4>

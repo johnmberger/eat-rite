@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     const randNum = Math.ceil(Math.random() * restaurants.length);
 
     restaurants.forEach((restaurant) => {
-      restaurant.url = `./img/${restaurant.cuisine_type}.jpeg`
+      restaurant.url = `./img/${restaurant.cuisine_type}.jpeg`;
     });
 
     res.render('index', {
