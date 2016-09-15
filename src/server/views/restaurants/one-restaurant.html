@@ -9,16 +9,15 @@
 
 {% block content %}
 
-<div class="all-rests">
-  <h2>Restaurant List</h2>
-
+<div class="all-rests container">
+  <br>
+  <br>
   {% for rest in rests %}
   <div class="row book-row">
     <div class="col-md-6 rest-pic">
-      <img class="restaurantImage" src="/img/{{rest.cuisine_type}}.jpeg">
+      <img class="restaurantImage img-responsive" src="/img/{{rest.cuisine_type}}.jpeg">
     </div>
     <div class="col-md-6 book-info">
-      <h4>Restaurant {{rest.id}}</h4>
       <!-- edit link to edit THAT book -->
       <a href="#" style="float: right" class="btn btn-primary">Edit</a>
       <!-- delete link to delete THAT book -->
@@ -27,7 +26,6 @@
       <a href="/review/{{rest.id}}" style="float: right" class="btn btn-success">Write a Review</a>
 
       <h2>{{rest.name}}</h2>
-
 
       <p>{{rest.cuisine_type}}</p>
       <p>{{rest.location}}</p>
