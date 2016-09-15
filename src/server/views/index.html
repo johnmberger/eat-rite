@@ -12,7 +12,7 @@
     <div class="col-md-12">
       <h1 class="text-center">Eat Rite</h1>
       <h2 class="text-center">Eat Rite is the best way to find local restaurants.</h2>
-      <a class="btn btn-primary btn-lg home-page-btn text-center" href="/restaurants">Start Exploring!</a>
+      <a class="btn btn-primary btn-lg home-page-btn" href="/restaurants">Start Exploring!</a>
     </div>
 
   </div>
@@ -21,7 +21,7 @@
     {% for restaurant in restaurants %}
     <div class="col-md-4">
       <a href="/restaurant/{{restaurant.restaurant_id}}"><h3>{{restaurant.name}}</h3></a>
-      <a href="/restaurant/{{restaurant.restaurant_id}}"><img class="img-responsive" src="{{restaurant.url}}" alt="restaurant-image" /></a>
+      <a href="/restaurant/{{restaurant.restaurant_id}}"><img class="img-responsive" src="./img/{{restaurant.cuisine_type}}.jpeg" alt="restaurant-image" /></a>
       <h4>{{restaurant.cuisine_type}}</h4>
       <h5>{{restaurant.city}}, {{restaurant.state}}</h5>
     </div>
