@@ -3,16 +3,16 @@ const router = express.Router();
 const knex  = require('../db/knex');
 
 router.post('/add-restaurant', (req, res, next) => {
-  let newReview = {
-    created_at: req.body.reviewDate,
-    content: req.body.reviewText,
-    rating: req.body.rating
+  let newRest = {
+    name: req.body.restName,
+    cuisine_type: req.body.cuisine_type,
+    description: req.body.description
   };
-  // console.log(newReview);
-  knex('reviews')
-  .insert(newReview)
+  console.log(newRest);
+  knex('restaurants')
+  .insert(newRest)
   .then (() => {
-    res.redirect(`/restaurants`);
+    res.redirect(`/`);
   });
 });
 

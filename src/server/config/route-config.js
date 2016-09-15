@@ -20,7 +20,7 @@
     app.use('/restaurant', restaurant);
     app.use('/restaurants', restaurants);
     app.use('/review', review);
-    app.use('/add-restaurant', addRestaurant);
+    app.use('/add-restaurant', addRestaurant)
   };
 
 })(module.exports);
