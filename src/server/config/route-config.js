@@ -8,11 +8,18 @@
     const routes = require('../routes/index');
     const newUser = require('../routes/newuser');
     const signIn = require('../routes/signin');
+    const restaurantRoute = require('../routes/restaurant');
+    const restaurants = require('../routes/restaurants');
+    const review = require('../routes/review');
 
     // *** register routes *** //
     app.use('/', routes);
     app.use('/newuser', newUser);
     app.use('/signin', signIn);
+    app.use('/restaurant', restaurantRoute);
+    app.use('/restaurants', restaurants);
+    app.use('/restaurants/add-restaurant', restaurants);
+    app.use('/review', review);
   };
 
 })(module.exports);

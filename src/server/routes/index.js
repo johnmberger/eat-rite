@@ -1,17 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const knex = require('../db/knex');
 
-const indexController = require('../controllers/index');
+router.get('/', (req, res, next) => {
 
-router.get('/', function (req, res, next) {
-  const renderObject = {};
-  renderObject.title = 'Welcome to Express!';
-  indexController.sum(1, 2, (error, results) => {
-    if (error) return next(error);
-    if (results) {
-      renderObject.sum = results;
-      res.render('index', renderObject);
-    }
+  knex('restaurants')
+  .select('*', 'restaurants.id as restaurant_id').join('addresses', 'addresses.id', 'restaurants.address_id')
+  .then((restaurants) => {
+    const randNum = Math.ceil(Math.random() * restaurants.length);
+
+    restaurants.forEach((restaurant) => {
+      restaurant.url = `./img/${restaurant.cuisine_type}.jpeg`
+    });
+
+    res.render('index', {
+      title: 'Eat Rite  | You Betta\' Eat Rite!',
+      restaurants: restaurants.slice(randNum, randNum + 3)
+    });
   });
 });
 
