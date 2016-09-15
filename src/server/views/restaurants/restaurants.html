@@ -37,7 +37,7 @@
     {% for rest in rests %}
     <div class="row restaurant-row">
       <div class="col-md-4 restaurant-pic">
-        <a href="/restaurants/{{rest.id}}"><img class="img-responsive"src="./img/{{rest.cuisine_type}}.jpeg"></a>
+        <a href="/restaurant/{{rest.id}}"><img class="img-responsive"src="./img/{{rest.cuisine_type}}.jpeg"></a>
       </div>
       <div class="col-md-8 restaurant-info">
         <h4>Restaurant {{loop.index}}</h4>
