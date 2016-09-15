@@ -1,12 +1,13 @@
 const db  = require('../db/knex');
 const Rests = db('restaurants');
+const reviews = db('reviews');
 
 function allRests(req, res, next) {
   //get books from db
   Rests.select()
   .then((results) => {
     const renderObject = {};
-    renderObject.title = 'the ol boopty bop';
+    renderObject.title = 'All restaurants';
     renderObject.rests = results;
     res.render('restaurants/restaurants', renderObject);
   })
@@ -17,10 +18,18 @@ function allRests(req, res, next) {
 
 function oneRest(req, res, next) {
   let id = req.params.id;
-  Rests.where('id', id)
+  Promise.all([Rests.where('id', id), reviews.where('restaurant_id', id)])
   .then((result) => {
+    const reviews = result[1];
+    var total = null;
+    reviews.forEach(review => {
+      total += Number(review.rating);
+    });
+    var average = total / reviews.length;
     const renderObject = {};
-    renderObject.rests = result;
+    renderObject.title = result[0][0].name;
+    renderObject.rests = result[0];
+    renderObject.score = average;
     if (result) {
       res.status(200).render('restaurants/one-restaurant', renderObject);
     } else {
