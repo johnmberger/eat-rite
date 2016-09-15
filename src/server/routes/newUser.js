@@ -5,7 +5,6 @@ const userFunctions = require('../../client/js/signinhelpers');
 
 router.get('/', function (req, res, next) {
   res.render('newUser', {title: 'New User Page'});
-
 });
 
 router.post('/', userFunctions.passwordValidation,  (req, res, next) => {
