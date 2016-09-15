@@ -27,6 +27,6 @@ a {
   color: dimgrey;
 }
 .home-page-btn {
-  width: 15%;
+  width: auto;
   margin: 20px auto;
 }
