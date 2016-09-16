@@ -2,33 +2,55 @@
 
 {% block title %}{% endblock %}
 
+{% block css %}
+<link rel="stylesheet" href="/css/oneRestaurant.css">
+<link rel="stylesheet" href="/css/nav.css">
+{% endblock %}
+
 {% block content %}
 
-<div class="all-rests">
-  <h2>Restaurant List</h2>
-
-  {% for rest in rests %}
-  <div class="row book-row">
-    <div class="col-md-6 rest-pic">
-      <!-- add href to link to single book -->
-      <!-- <img src="{{rest.cover_url}}"> -->
-      <a href="/restaurant/{{rest.id}}"><img src="http://placehold.it/170x170"></a>
+<div class="all-rests container">
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <img class="restaurantImage img-responsive" src="/img/{{rest.cuisine_type}}.jpeg">
+      {% for employee in employees %}
+      <div class="col-md-12">
+        <h2>{{employee.role}}</h2>
+        <h3>{{employee.first_name}} {{employee.last_name}}</h3>
+      </div>
+      {% endfor %}
     </div>
-    <div class="col-md-6 book-info">
-      <h4>Restaurant {{rest.uid}}</h4>
-      <!-- edit link to edit THAT book -->
+    <div class="col-md-6">
       <a href="#" style="float: right" class="btn btn-primary">Edit</a>
-      <!-- delete link to delete THAT book -->
       <a href="#" style="float: right" class="btn btn-danger">Remove</a>
+      <a href="/review/{{id}}" style="float: right" class="btn btn-success">Write a Review</a>
+
       <h2>{{rest.name}}</h2>
 
-      <p>{{rest.cuisine_type}}</p>
+      <p>{{rest.cuisine_type}}</p><span class="stars">{{score}}</span>
       <p>{{rest.location}}</p>
       <p>{{rest.description}}</p>
       <hr>
+      <div class="col-md-12">
+        <h2 class>{{numberReviews}} Reviews</h2>
+        {% for review in allReviews %}
+        <div class="col-md-12">
+          <h3>{{review.first_name}} {{review.last_name}} on {{review.review_date}}</h3>
+          <span class="stars">{{review.rating}}</span>
+          <p>
+            {{review.content}}
+          </p>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
-  {% endfor %}
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="/js/restaurant.js"></script>
 {% endblock %}
