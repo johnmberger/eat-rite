@@ -24,22 +24,31 @@
     <div class="form-group-lg">
       <label class="control-label" for="location">Location:</label>
       <br>
-      <div class="">
-        <label class="control-label" for="location">Street:</label>
-        <input type="text" name="line_1" class="form-control input-lg"  placeholder="Enter a street name for your restaurant...">
-        <label class="control-label" for="location">City:</label>
-        <input type="text" name="city" class="form-control input-lg"  placeholder="Enter a city for your restaurant...">
-        <label class="control-label" for="location">State:</label>
-        <input type="text" name="state" class="form-control input-lg"  placeholder="Enter a state for your restaurant...">
-        <label class="control-label" for="location">Zip code:</label>
-        <input type="number" name="zip" class="form-control input-lg"  placeholder="Enter a zip for your restaurant...">
+      <!-- location field -->
+      <div class="form-group-lg">
+        <label class="control-label" for="location">Address:</label>
+        <div class="">
+          <input type="text" name="line1" class="form-control input-lg" id="add-line-2" placeholder="Street address line 1">
+        </div>
+        <div class="">
+          <input type="text" name="line2" class="form-control input-lg" id="add-line-2" placeholder="Street address line 2">
+        </div>
+        <div class="col-lg-5">
+          <input type="text" name="city" class="form-control input-lg " id="city" placeholder="City">
+        </div>
+        <div class="col-lg-3">
+          <input type="text" name="state" class="form-control input-lg " id="state" placeholder="State">
+        </div>
+        <div class="col-lg-3">
+          <input id="zipCode" name="zip" class="zipcode form-control input-lg" type="text" placeholder = "ZIP" pattern="\d*">
+        </div>
       </div>
       <br>
       <!-- cuisine field -->
-      <div class="form-group-lg">
+      <div class="form-group-lg col-lg-12">
         <label class="control-label" for="cuisine">Cuisine:</label>
         <div class="">
-          <input type="text" name="cuisine_type" class="form-control input-lg" id="rest-cuisine" placeholder="Enter a cuisine type for your restaurant...">
+          <input type="text" name="cuisine_type" class="form-control input-lg" id="rest-cuisine" placeholder="Select a cuisine type for your restaurant...">
         </div>
       </div>
       <br>
