@@ -1,5 +1,18 @@
 const knex = require('../db/knex');
 
+function oneRestDelete(searchID) {
+  return knex('reviews').where('restaurant_id', searchID).del()
+  .then((result) => {
+    knex('employees').where('restaurant_id', searchID).del()
+    .then((result) => {
+      knex('restaurants').where('id', searchID).del()
+      .then((data) => {
+        return data;
+      });
+    });
+  });
+}
+
 function oneRest(searchID) {
   return Promise.all([
     knex('restaurants').where('restaurants.id', searchID)
@@ -9,7 +22,6 @@ function oneRest(searchID) {
     .orderBy('review_date', 'DESC')
   ])
   .then((result) => {
-    console.log(result);
     var reviews = result[1];
     var total = 0;
     reviews.forEach(review => {
@@ -26,10 +38,11 @@ function oneRest(searchID) {
     renderObject.id = searchID;
     return renderObject;
   }).catch((err) => {
-    console.log(err);
+    return err;
   });
 }
 
 module.exports = {
-  oneRest
+  oneRest,
+  oneRestDelete
 };
