@@ -9,5 +9,29 @@ router.get('/:id', (req, res, next) => {
     res.render('restaurants/one-restaurant', renderObject);
   });
 });
+const knex  = require('../db/knex');
+router.get('/:id/edit-restaurant', (req, res, next) => {
+  const searchID = req.params.id;
+  const renderObject = {};
+  knex('restaurants').where('id', searchID).then(rests => {
+    let promises = rests.map(rest => {
+      return knex('addresses')
+      .where({ id: rest.id }).first();
+    });
+    return Promise.all(promises)
+    .then((addresses) => {
+      addresses.forEach((address, i) => {
+        rests.address = address;
+      });
+      renderObject.rest = rests;
+    });
+  })
+  .then(() => {
+    console.log('rest', renderObject.rest);
+    res.render('restaurants/edit-restaurant', renderObject);
+  });
+});
+
+router.put('/:id/edit-restaurant', (req, res, next) => {  });
 
 module.exports = router;

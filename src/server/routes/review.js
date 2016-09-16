@@ -7,18 +7,6 @@ router.get('/', (req, res, next) => {
   renderObj.title = 'Review Page';
   res.render('review', renderObj);
 });
-
-<<<<<<< HEAD
-router.get('/', function (req, res, next) {
-  const renderObject = {};
-  renderObject.title = 'Review Page!';
-  indexController.sum(1, 2, (error, results) => {
-    if (error) return next(error);
-    if (results) {
-      renderObject.sum = results;
-      res.render('review', renderObject);
-    }
-=======
 router.get('/:id', (req, res, next) => {
   let id = req.params.id;
   knex('restaurants').where('id', id)
@@ -27,7 +15,6 @@ router.get('/:id', (req, res, next) => {
     renderObj.title = 'Review Page';
     renderObj.result = result;
     res.render('review', renderObj);
->>>>>>> dccfaaed8a2946a1f949dd4ee8ebfaa73e220637
   });
 });
 
