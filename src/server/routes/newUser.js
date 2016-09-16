@@ -8,14 +8,16 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', userFunctions.passwordValidation, (req, res, next) => {
-  console.log('request body in route', req.body);
-  userFunctions.createUser(req.body)
-  .then (() => {
-    res.redirect(' /newuser');
-  })
-  .catch ((err) => {
-    return next(err);
-  });
+  if (!req.body.err) {
+    sessionStorage.clear();
+    userFunctions.createUser(req.body)
+    .then (() => {
+      res.redirect('/');
+    })
+    .catch ((err) => {
+      return next(err);
+    });
+  }
 });
 
 module.exports = router;

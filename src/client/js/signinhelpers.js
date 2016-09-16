@@ -12,15 +12,21 @@ function passwordValidation (req, res, next) {
   knex('users')
   .where('email', userEmail)
   .then ((user) => {
-    const renderObject = {};
+    // const renderObject = {};
     if (user.length) {
+      const renderObject = {};
       renderObject.alertIsUser = 'You already have an account set up with that email.';
+      req.body.err = true;
       res.render('newUser', renderObject);
     } else if (req.body.password !==  req.body.confirm_password) {
+      const renderObject = {};
       renderObject.alertMessage = 'Your passwords do not match.';
+      req.body.err = true;
       res.render('newUser', renderObject);
     } else if (userEmail === undefined) {
+      const renderObject = {};
       renderObject.alertNoEmail = 'You did not type in an email.';
+      req.body.err = true;
       res.render('newUser', renderObject);
     } else {
       console.log('match');
@@ -28,20 +34,15 @@ function passwordValidation (req, res, next) {
     next();
   });
 }
+
 //hashing salt
 function hashSalt (password) {
   var hashed = bcrypt.hashSync(password, 2);
-  console.log('hashed one', hashed);
   return (hashed);
 }
 //create a user inside the datebase
 function createUser(req, userObject) {
-  console.log('in the createUser FUNCTION req', req);
-  console.log('in the createUser FUNCTION for email', req.password);
   var pass = hashSalt(req.password);
-  console.log('PASSSSSSSS', pass);
-  console.log('PASS VARIABLE', `${pass}`);
-
   var newUser = {
     first_name: req.first_name,
     last_name: req.last_name,
@@ -49,7 +50,6 @@ function createUser(req, userObject) {
     password: `${pass}`,
     is_admin: req.is_admin || false
   };
-  console.log('newusers.......', newUser);
   return knex('users').insert(newUser);
 }
 
