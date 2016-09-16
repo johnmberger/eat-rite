@@ -39,9 +39,7 @@ router.get('/:id/edit-restaurant', (req, res, next) => {
 router.put('/:id/edit-restaurant', oneRestaurantController.restUpdate);
 
 router.delete('/:id/delete', (req, res, next) => {
-
   const searchID = parseInt(req.params.id);
-
   oneRestaurantController.oneRestDelete(searchID)
   .then((renderObject) => {
     res.send('success!');
@@ -49,7 +47,6 @@ router.delete('/:id/delete', (req, res, next) => {
   .catch((err) => {
     return next(err);
   });
-
 });
 
 module.exports = router;
