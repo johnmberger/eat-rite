@@ -7,7 +7,6 @@ router.get('/', (req, res, next) => {
   renderObj.title = 'Review Page';
   res.render('review', renderObj);
 });
-
 router.get('/:id', (req, res, next) => {
   let id = req.params.id;
   knex('restaurants').where('id', id)

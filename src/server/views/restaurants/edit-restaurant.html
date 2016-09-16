@@ -1,0 +1,62 @@
+{% extends "_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/css/allRestaurants.css">
+<link rel="stylesheet" href="/css/nav.css">
+{% endblock %}
+
+{% block content %}
+
+  <h2 style="text-align: center">Update a restaurant!</h2>
+
+  <form class="form-horizontal" id="rest-update">
+    <!-- name field -->
+    <div class="form-group-lg">
+      <label class="control-label" for="name">Name:</label>
+      <div class="">
+        <input type="text" name="name" class="form-control input-lg" id="rest-name" value="{{ rest[0].name }}" placeholder="Enter a restaurant name...">
+      </div>
+    </div>
+    <br>
+    <!-- location field -->
+    <div class="form-group-lg">
+      <label class="control-label" for="location">Location:</label>
+      <br>
+      <div class="">
+        <label class="control-label" for="location">Street:</label>
+        <input type="text" id="line_1" name="line_1" class="form-control input-lg"  value="{{ rest.address.line_1 }}" placeholder="Enter a street name for your restaurant...">
+        <label class="control-label" for="location">City:</label>
+        <input type="text" id="city" name="city" class="form-control input-lg"  value="{{ rest.address.city }}" placeholder="Enter a city for your restaurant...">
+        <label class="control-label" for="location">State:</label>
+        <input type="text" id="state" name="state" class="form-control input-lg"  value="{{ rest.address.state }}" placeholder="Enter a state for your restaurant...">
+        <label class="control-label" for="location">Zip code:</label>
+        <input type="number" id="zip" name="zip" class="form-control input-lg"  value="{{ rest.address.zip }}" placeholder="Enter a zip for your restaurant...">
+      </div>
+      <br>
+      <!-- cuisine field -->
+      <div class="form-group-lg">
+        <label class="control-label" for="cuisine">Cuisine:</label>
+        <div class="">
+          <input type="text" name="cuisine_type" class="form-control input-lg" id="rest-cuisine" value="{{ rest[0].cuisine_type }}" placeholder="Enter a cuisine type for your restaurant...">
+        </div>
+      </div>
+      <br>
+      <!-- description field -->
+      <div class="form-group-lg">
+        <label class="control-label" for="description">Description:</label>
+        <div class="">
+          <input type="text" name="description" class="form-control input-lg" id="rest-description" value="{{ rest[0].description }}" placeholder="Enter a description for your restaurant..."></input>
+        </div>
+      </div>
+      <br>
+    </fieldset>
+    <div class="form-group-lg">
+      <div class="col-lg-offset-3">
+        <button type="submit" class="btn btn-default">Update restaurant!</button>
+      </div>
+    </div>
+  </form>
+
+{% endblock %}

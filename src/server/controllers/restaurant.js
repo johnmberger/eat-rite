@@ -42,7 +42,44 @@ function oneRest(searchID) {
   });
 }
 
+function restUpdate(req, res, next) {
+  const id = parseInt(req.params.id);
+  const updatedName = req.body.name;
+  const updatedCuisine = req.body.rest_cuisine;
+  const updatedDescription = req.body.description;
+  const updatedStreet = req.body.line_1;
+  const updatedCity = req.body.city;
+  const updatedState = req.body.state;
+  const updatedZip = req.body.zip;
+  knex('restaurants')
+  .update({
+    name: updatedName,
+    cuisine_type: updatedCuisine,
+    description: updatedDescription
+  })
+  .where('id', id)
+  .returning('*')
+  .then((results) => {
+    knex('addresses')
+    .update({
+      line_1: updatedStreet,
+      city: updatedCity,
+      state: updatedState,
+      zip: updatedZip
+    })
+    .where('id', id)
+    .returning('*')
+    .then((results) => {
+      res.status(200).json({
+        status: 'success',
+        message: `${results[0].name} has been updated!`
+      });
+    });
+  });
+}
+
 module.exports = {
   oneRest,
+  restUpdate,
   oneRestDelete
 };

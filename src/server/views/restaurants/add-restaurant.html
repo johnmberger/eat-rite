@@ -11,15 +11,18 @@
 
   <h2 style="text-align: center">Add a restaurant!</h2>
 
-  <form class="form-horizontal col-lg-6" action="/restaurants/add-restaurant" method="post">
-    <fieldset>
-      <!-- name field -->
-      <div class="form-group-lg">
-        <label class="control-label" for="name">Name:</label>
-        <div class="">
-          <input type="text" name="restName" class="form-control input-lg" id="rest-name" placeholder="Enter a restaurant name...">
-        </div>
+  <form class="form-horizontal" action="/restaurants/add-restaurant" method="post">
+    <!-- name field -->
+    <div class="form-group-lg">
+      <label class="control-label" for="name">Name:</label>
+      <div class="">
+        <input type="text" name="name" class="form-control input-lg" id="rest-name" placeholder="Enter a restaurant name...">
       </div>
+    </div>
+    <br>
+    <!-- location field -->
+    <div class="form-group-lg">
+      <label class="control-label" for="location">Location:</label>
       <br>
       <!-- location field -->
       <div class="form-group-lg">
@@ -65,9 +68,5 @@
     </div>
   </form>
 
-</div>
-
-</body>
-</html>
 
 {% endblock %}

@@ -16,7 +16,6 @@ router.get('/', (req, res, next) => {
     } else {
       userName = false;
     }
-
     res.render('index', {
       title: 'Eat Rite  | You Betta\' Eat Rite!',
       restaurants: restaurants.slice(randNum, randNum + 3),

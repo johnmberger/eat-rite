@@ -35,13 +35,13 @@
       <div class="col-md-8 restaurant-info">
         <h4>Restaurant {{loop.index}}</h4>
         <!-- edit link to edit THAT restaurant -->
-        <a href="#" style="float: right" class="btn btn-primary">Edit</a>
+        <a href="/restaurant/{{ rest.id }}/edit-restaurant" style="float: right" class="btn btn-primary">Edit</a>
         <!-- delete link to delete THAT restaurant -->
         <a href="#" style="float: right" class="btn btn-danger">Remove</a>
         <a href="/restaurant/{{rest.id}}"><h2>{{rest.name}}</h2></a>
 
         <p>{{rest.cuisine_type}}</p>
-        <p>{{rest.location}}</p>
+        <p>{{rest.address.line_1}} {{rest.address.city}}, {{rest.address.state}} {{rest.address.zip}}</p>
         <p>{{rest.description}}</p>
         <br>
       </div>

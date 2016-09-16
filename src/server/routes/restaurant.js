@@ -15,6 +15,29 @@ router.get('/:id', (req, res, next) => {
   });
 });
 
+router.get('/:id/edit-restaurant', (req, res, next) => {
+  const searchID = req.params.id;
+  const renderObject = {};
+  knex('restaurants').where('id', searchID).then(rests => {
+    let promises = rests.map(rest => {
+      return knex('addresses')
+      .where({ id: rest.id }).first();
+    });
+    return Promise.all(promises)
+    .then((addresses) => {
+      addresses.forEach((address, i) => {
+        rests.address = address;
+      });
+      renderObject.rest = rests;
+    });
+  })
+  .then(() => {
+    res.render('restaurants/edit-restaurant', renderObject);
+  });
+});
+
+router.put('/:id/edit-restaurant', oneRestaurantController.restUpdate);
+
 router.delete('/:id/delete', (req, res, next) => {
 
   const searchID = parseInt(req.params.id);

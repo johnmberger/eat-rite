@@ -11,7 +11,7 @@ $('#signIn').on('click', (e) => {
     method: 'POST',
     data: payload
   }).done((data) => {
-    if(data.message) {
+    if (data.message) {
       window.location.replace('/');
     } else {
       console.log(data);
