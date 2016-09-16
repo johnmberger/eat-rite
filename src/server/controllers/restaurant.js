@@ -3,10 +3,10 @@ const knex = require('../db/knex');
 function oneRest(searchID) {
   return Promise.all([
     knex('restaurants').where('restaurants.id', searchID)
-    .leftJoin('employees', 'employees.restaurant_id', 'restaurants.id')
-    .orderBy('employees.role', 'DESC'),
+    .leftJoin('employees', 'employees.restaurant_id', 'restaurants.id'),
     knex('reviews').select('*', 'reviews.created_at as review_date').where('restaurant_id', searchID)
     .leftJoin('users', 'users.id', 'reviews.user_id')
+    .orderBy('review_date', 'DESC')
   ])
   .then((result) => {
     console.log(result);
