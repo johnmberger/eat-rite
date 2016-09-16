@@ -9,7 +9,7 @@ router.get('/add-restaurant', restsController.addRestPage);
 
 router.post('/add-restaurant', (req, res, next) => {
   let newRest = {
-    name: req.body.restName,
+    name: req.body.name,
     cuisine_type: req.body.cuisine_type,
     description: req.body.description
   };
