@@ -9,10 +9,9 @@ router.get('/', function (req, res, next) {
 
 router.post('/', userFunctions.passwordValidation, (req, res, next) => {
   if (!req.body.err) {
-    sessionStorage.clear();
     userFunctions.createUser(req.body)
     .then (() => {
-      res.redirect('/');
+      res.redirect('/signIn');
     })
     .catch ((err) => {
       return next(err);
