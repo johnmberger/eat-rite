@@ -12,17 +12,26 @@ router.post('/add-restaurant', (req, res, next) => {
     name: req.body.restName,
     cuisine_type: req.body.cuisine_type,
     description: req.body.description
-    // address_id: 1
   };
-  // let newAddress = {
-  //
-  // }
-  console.log(newRest);
-  db('restaurants')
-  .insert(newRest)
+  let newRestAdd = {
+    line_1: req.body.line1,
+    line_2: req.body.line2,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip
+  };
+  db('addresses')
+  .insert(newRestAdd)
   .returning('id')
   .then ((id) => {
-    res.redirect(`/restaurant/${id}`);
+    newRest.address_id = parseInt(id);
+    console.log(newRest);
+    db('restaurants')
+    .insert(newRest)
+    .returning('id')
+    .then ((id) => {
+      res.redirect(`/restaurant/${id}`);
+    });
   });
 });
 
