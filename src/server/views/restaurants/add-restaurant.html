@@ -23,17 +23,29 @@
       <br>
       <!-- location field -->
       <div class="form-group-lg">
-        <label class="control-label" for="location">Location:</label>
+        <label class="control-label" for="location">Address:</label>
         <div class="">
-          <input type="text" name="location" class="form-control input-lg" id="rest-location" placeholder="Enter a location for your restaurant...">
+          <input type="text" name="line1" class="form-control input-lg" id="add-line-2" placeholder="Street address line 1">
+        </div>
+        <div class="">
+          <input type="text" name="line2" class="form-control input-lg" id="add-line-2" placeholder="Street address line 2">
+        </div>
+        <div class="col-lg-5">
+          <input type="text" name="city" class="form-control input-lg " id="city" placeholder="City">
+        </div>
+        <div class="col-lg-3">
+          <input type="text" name="state" class="form-control input-lg " id="state" placeholder="State">
+        </div>
+        <div class="col-lg-3">
+          <input id="zipCode" name="zip" class="zipcode form-control input-lg" type="text" placeholder = "ZIP" pattern="\d*">
         </div>
       </div>
       <br>
       <!-- cuisine field -->
-      <div class="form-group-lg">
+      <div class="form-group-lg col-lg-12">
         <label class="control-label" for="cuisine">Cuisine:</label>
         <div class="">
-          <input type="text" name="cuisine_type" class="form-control input-lg" id="rest-cuisine" placeholder="Enter a cuisine type for your restaurant...">
+          <input type="text" name="cuisine_type" class="form-control input-lg" id="rest-cuisine" placeholder="Select a cuisine type for your restaurant...">
         </div>
       </div>
       <br>

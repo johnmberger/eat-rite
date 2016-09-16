@@ -9,7 +9,7 @@ function oneRest(searchID) {
     .leftJoin('users', 'users.id', 'reviews.user_id')
   ])
   .then((result) => {
-    console.log(result);
+    // console.log(result);
     var reviews = result[1];
     var total = 0;
     reviews.forEach(review => {
