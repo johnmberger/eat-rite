@@ -11,7 +11,7 @@ router.post('/add-restaurant', (req, res, next) => {
   let newRest = {
     name: req.body.restName,
     cuisine_type: req.body.cuisine_type,
-    description: req.body.description,
+    description: req.body.description
     // address_id: 1
   };
   // let newAddress = {
