@@ -7,19 +7,14 @@ router.get('/', function (req, res, next) {
   res.render('newUser', {title: 'New User Page'});
 });
 
-router.post('/', userFunctions.passwordValidation,  (req, res, next) => {
-  let newUser = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    is_admin: req.body.is_admin
-  };
-  console.log('rawr',  newUser);
-  knex('users')
-  .insert(newUser)
+router.post('/', userFunctions.passwordValidation, (req, res, next) => {
+  console.log('request body in route', req.body);
+  userFunctions.createUser(req.body)
   .then (() => {
     res.redirect(' /newuser');
+  })
+  .catch ((err) => {
+    return next(err);
   });
 });
 
