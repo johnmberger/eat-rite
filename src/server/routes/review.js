@@ -8,7 +8,6 @@ router.get('/', function (req, res, next) {
   renderObject.title = 'Review Page!';
   indexController.sum(1, 2, (error, results) => {
     if (error) return next(error);
-    
     if (results) {
       renderObject.sum = results;
       res.render('review', renderObject);

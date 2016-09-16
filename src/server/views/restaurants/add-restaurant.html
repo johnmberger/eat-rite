@@ -1,6 +1,6 @@
   <h2 style="text-align: center">Add a restaurant!</h2>
 
-  <form class="form-horizontal" action="/restaurants/add-a-rest" method="post">
+  <form class="form-horizontal" action="/restaurants/add-restaurant" method="post">
     <!-- name field -->
     <div class="form-group-lg">
       <label class="control-label" for="name">Name:</label>
@@ -12,8 +12,16 @@
     <!-- location field -->
     <div class="form-group-lg">
       <label class="control-label" for="location">Location:</label>
+      <br>
       <div class="">
-        <input type="text" name="location" class="form-control input-lg" id="rest-location" placeholder="Enter a location for your restaurant...">
+        <label class="control-label" for="location">Street:</label>
+        <input type="text" name="line_1" class="form-control input-lg"  placeholder="Enter a street name for your restaurant...">
+        <label class="control-label" for="location">City:</label>
+        <input type="text" name="city" class="form-control input-lg"  placeholder="Enter a city for your restaurant...">
+        <label class="control-label" for="location">State:</label>
+        <input type="text" name="state" class="form-control input-lg"  placeholder="Enter a state for your restaurant...">
+        <label class="control-label" for="location">Zip code:</label>
+        <input type="number" name="zip" class="form-control input-lg"  placeholder="Enter a zip for your restaurant...">
       </div>
     </div>
     <br>
