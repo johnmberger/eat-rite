@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const knex = require('../../server/db/knex');
+const knex = require('../db/knex');
 
 function passwordValidation (req, res, next) {
   const userEmail = req.body.email;

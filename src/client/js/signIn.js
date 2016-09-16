@@ -9,8 +9,7 @@ $('#signIn').on('click', (e) => {
   $.ajax({
     url: '/signIn',
     method: 'POST',
-    payload: payload
+    data: payload
   }).done((data) => {
-    window.location.replace('/');
   });
 });
