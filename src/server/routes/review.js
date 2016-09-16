@@ -37,9 +37,9 @@ router.post('/:id', (req, res, next) => {
   let id = req.params.id;
   let newReview = {
     restaurant_id: id,
-    created_at: req.body.reviewDate,
     content: req.body.reviewText,
-    rating: req.body.rating
+    rating: req.body.rating,
+    user_id: 1
   };
   // console.log(newReview);
   knex('reviews')

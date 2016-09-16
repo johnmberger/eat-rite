@@ -8,6 +8,6 @@ $.fn.stars = function() {
   });
 };
 
-$(function() {
+(function() {
   $('span.stars').stars();
 })();
