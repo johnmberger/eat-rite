@@ -3,7 +3,7 @@ const states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI'
 
 function allRests(req, res, next) {
   const renderObject = {};
-  knex('restaurants').then(rests => {
+  knex('restaurants').orderBy('name', 'ASC').then(rests => {
     let promises = rests.map(rest => {
       return knex('addresses')
       .where({ id: rest.id }).first();

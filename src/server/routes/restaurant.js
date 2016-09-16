@@ -27,11 +27,10 @@ router.get('/:id/edit-restaurant', (req, res, next) => {
     });
   })
   .then(() => {
-    console.log('rest', renderObject.rest);
     res.render('restaurants/edit-restaurant', renderObject);
   });
 });
 
-router.put('/:id/edit-restaurant', (req, res, next) => {  });
+router.put('/:id/edit-restaurant', oneRestC.restUpdate);
 
 module.exports = router;

@@ -1,7 +1,8 @@
-$(document).on('submit', '#rest-update', function(e) {
-    e.preventDefault();
+'use strict';
 
-    const $updatedName = $('#name').val();
+$('#rest-update').on('submit', function(e) {
+    e.preventDefault();
+    const $updatedName = $('#rest-name').val();
     const $updatedCuisine = $('#rest-cuisine').val();
     const $updatedDescription = $('#rest-description').val();
     const $updatedStreet = $('#line_1').val();
@@ -12,10 +13,7 @@ $(document).on('submit', '#rest-update', function(e) {
     const Restaurant = {
       name: $updatedName,
       rest_cuisine: $updatedCuisine,
-      rest_description: $updatedDescription
-    };
-
-    const Address = {
+      description: $updatedDescription,
       line_1: $updatedStreet,
       city: $updatedCity,
       state: $updatedState,
@@ -26,12 +24,12 @@ $(document).on('submit', '#rest-update', function(e) {
 
     $.ajax({
       type: 'PUT',
-      url: `/restaurants/${parseInt(id)}/edit-restaurant`,
-      data: Restaurant, Address
+      url: `/restaurant/${id}/edit-restaurant`,
+      data: Restaurant
     })
     .done((data) => {
       window.location.href = '/restaurants';
-      location.reload();
+      // location.reload();
     })
     .fail((err) => {
       console.log(err);
