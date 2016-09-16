@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
-const userFunctions = require('../../client/js/signinhelpers');
+const userFunctions = require('../controllers/signuphelpers');
 
 router.get('/', function (req, res, next) {
   res.render('newUser', {title: 'New User Page'});

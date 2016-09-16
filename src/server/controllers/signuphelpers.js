@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const knex = require('../../server/db/knex');
+const knex = require('../db/knex');
 
-const md5 = require('md5');
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 const hash = bcrypt.hashSync('B4c0/\/', salt);
