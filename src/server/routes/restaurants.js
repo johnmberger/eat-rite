@@ -12,7 +12,6 @@ router.post('/add-restaurant', (req, res, next) => {
     name: req.body.restName,
     cuisine_type: req.body.cuisine_type,
     description: req.body.description
-
   };
   let newRestAdd = {
     line_1: req.body.line1,
