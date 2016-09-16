@@ -11,7 +11,6 @@
     const restaurant = require('../routes/restaurant');
     const restaurants = require('../routes/restaurants');
     const review = require('../routes/review');
-    const addRestaurant = require('../routes/add-restaurant');
 
     // *** register routes *** //
     app.use('/', routes);
