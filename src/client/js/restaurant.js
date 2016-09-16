@@ -24,7 +24,7 @@ $(document).on('click', '#delete-restaurant', function() {
       url: `/restaurant/${restaurantID}/delete`
     })
     .done((data) => {
-      window.location.href = "/restaurants";
+      window.location.href = '/restaurants';
     })
     .fail((err) => {
       console.log(err);
