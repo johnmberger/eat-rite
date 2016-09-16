@@ -5,11 +5,15 @@
 {% block content %}
 
 <div class="container">
-<form class="form-horizontal">
-  <div class="form-group">
+  <form class="form-horizontal">
+    <div class="form-group">
 
-        <div class="form-group" action="/signin" method="post">
-          <h1 class="text-center">Log In</h1>
+      <div class="form-group" action="/signin" method="post">
+        <h1 class="text-center">Log In</h1>
+
+        <div id="error">
+
+        </div>
 
         <div class="form-group">
           <label for="email">Email</label>

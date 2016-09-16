@@ -14,7 +14,7 @@ $('#signIn').on('click', (e) => {
     if (data.message) {
       window.location.replace('/');
     } else {
-      console.log(data);
+      $('#error').html(`<div>${data.error}</div>`);
     }
   });
 });
