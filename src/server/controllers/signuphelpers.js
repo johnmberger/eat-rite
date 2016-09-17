@@ -1,10 +1,5 @@
-const express = require('express');
-const router = express.Router();
 const knex = require('../db/knex');
-
 const bcrypt = require('bcryptjs');
-const salt = bcrypt.genSaltSync(10);
-const hash = bcrypt.hashSync('B4c0/\/', salt);
 
 function passwordValidation (req, res, next) {
   const userEmail = req.body.email;
@@ -45,11 +40,13 @@ function passwordValidation (req, res, next) {
     next();
   });
 }
+
 //hashing salt
 function hashSalt (password) {
   var hashed = bcrypt.hashSync(password, 2);
-  return (hashed);
+  return hashed;
 }
+
 //create a user inside the datebase
 function createUser(req, userObject) {
   var pass = hashSalt(req.password);
@@ -65,6 +62,5 @@ function createUser(req, userObject) {
 
 module.exports = {
   passwordValidation,
-  hashSalt,
   createUser
 };

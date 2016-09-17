@@ -8,6 +8,16 @@ $.fn.stars = function() {
   });
 };
 
+$('#signOut').on('click', (e) => {
+  e.preventDefault();
+  $.ajax({
+    url: '/signOut',
+    method: 'GET'
+  }).done((data) => {
+    window.location.replace('/');
+  });
+});
+
 (function() {
   $('span.stars').stars();
 })();
