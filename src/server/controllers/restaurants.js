@@ -10,7 +10,6 @@ function allRests(req, res, next) {
     });
     return Promise.all(promises)
     .then((addresses) => {
-      var userName;
       if (req.session.user) renderObject.userName = req.session.user.first_name;
       if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
       addresses.forEach((address, i) => {
