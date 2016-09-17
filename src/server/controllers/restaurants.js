@@ -25,7 +25,10 @@ function allRests(req, res, next) {
 }
 
 function addRestPage(req, res, next) {
-  res.render('restaurants/add-restaurant');
+  const renderObject = {};
+  if (req.session.user) renderObject.userName = req.session.user.first_name;
+  if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
+  res.render('restaurants/add-restaurant', renderObject);
 }
 
 function addRest(req, res, next) {
