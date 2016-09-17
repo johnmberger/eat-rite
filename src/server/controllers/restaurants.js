@@ -25,7 +25,6 @@ function allRests(req, res, next) {
     });
   })
   .then(() => {
-    console.log(renderObject.score);
     res.render('restaurants/restaurants', renderObject);
   });
 }

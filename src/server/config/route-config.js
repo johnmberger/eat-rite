@@ -11,6 +11,7 @@
     const restaurant = require('../routes/restaurant');
     const restaurants = require('../routes/restaurants');
     const review = require('../routes/review');
+    const signOut = require('../routes/signOut');
 
     // *** register routes *** //
     app.use('/', routes);
@@ -19,6 +20,7 @@
     app.use('/restaurant', restaurant);
     app.use('/restaurants', restaurants);
     app.use('/review', review);
+    app.use('/signOut', signOut);
   };
 
 })(module.exports);
