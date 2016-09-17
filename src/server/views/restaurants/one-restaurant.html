@@ -14,12 +14,14 @@
   <div class="row">
     <div class="col-md-6">
       <img class="restaurantImage img-responsive" src="/img/{{rest.cuisine_type}}.jpeg">
-      {% for employee in employees %}
-      <div class="col-md-12">
-        <h2>{{employee.role}}</h2>
-        <h3>{{employee.first_name}} {{employee.last_name}}</h3>
-      </div>
-      {% endfor %}
+      {% if is_admin %}
+        {% for employee in employees %}
+        <div class="col-md-12">
+          <h2>{{employee.role}}</h2>
+          <h3>{{employee.first_name}} {{employee.last_name}}</h3>
+        </div>
+        {% endfor %}
+      {% endif %}
     </div>
     <div class="col-md-6">
       {% if is_admin %}
