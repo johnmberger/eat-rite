@@ -43,8 +43,10 @@ function oneRest(searchID) {
 }
 
 function restUpdate(req, res, next) {
+  let name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
+  console.log(name);
   const id = parseInt(req.params.id);
-  const updatedName = req.body.name;
+  const updatedName = name;
   const updatedCuisine = req.body.rest_cuisine;
   const updatedDescription = req.body.description;
   const updatedStreet = req.body.line_1;
