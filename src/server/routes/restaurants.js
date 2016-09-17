@@ -25,7 +25,6 @@ router.post('/add-restaurant', (req, res, next) => {
   .returning('id')
   .then ((id) => {
     newRest.address_id = parseInt(id);
-    console.log(newRest);
     db('restaurants')
     .insert(newRest)
     .returning('id')

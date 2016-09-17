@@ -15,7 +15,12 @@ router.post('/', (req, res, next) => {
         res.json({error: 'Incorrect Password/Email'});
         break;
       default:
-        req.session.user = { username: results[0].email, first_name: results[0].first_name, is_admin: results[0].is_admin };
+        req.session.user = {
+          username: results[0].email,
+          first_name: results[0].first_name,
+          user_id: results[0].id,
+          is_admin: results[0].is_admin
+        };
         res.json({ message: 'Login successful.' });
         break;
     }

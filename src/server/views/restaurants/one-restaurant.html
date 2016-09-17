@@ -36,7 +36,7 @@
         <h2 class>{{numberReviews}} Reviews</h2>
         {% for review in allReviews %}
         <div class="col-md-12">
-          <h3>{{review.first_name}} {{review.last_name}} on {{review.review_date}}</h3>
+          <h3>{{review.first_name}} {{review.last_name}}. on {{review.review_date}}</h3>
           <span class="stars">{{review.rating}}</span>
           <p>
             {{review.content}}

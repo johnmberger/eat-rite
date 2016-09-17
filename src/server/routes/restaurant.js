@@ -8,6 +8,17 @@ router.get('/:id', (req, res, next) => {
   const reviews = [];
   oneRestaurantController.oneRest(searchID)
   .then((renderObject) => {
+    var userName;
+    if (req.session.user) {
+      userName = req.session.user.first_name;
+    } else {
+      userName = false;
+    }
+    renderObject.userName = userName;
+    renderObject.allReviews.forEach((review) => {
+      review.last_name = review.last_name.split('')[0];
+      review.review_date = review.review_date.toDateString();
+    });
     res.render('restaurants/one-restaurant', renderObject);
   })
   .catch((err) => {
@@ -18,6 +29,12 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/edit-restaurant', (req, res, next) => {
   const searchID = req.params.id;
   const renderObject = {};
+  var userName;
+  if (req.session.user) {
+    userName = req.session.user.first_name;
+  } else {
+    userName = false;
+  }
   knex('restaurants').where('id', searchID).then(rests => {
     let promises = rests.map(rest => {
       return knex('addresses')
@@ -29,6 +46,7 @@ router.get('/:id/edit-restaurant', (req, res, next) => {
         rests.address = address;
       });
       renderObject.rest = rests;
+      renderObject.userName = userName;
     });
   })
   .then(() => {

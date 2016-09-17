@@ -10,11 +10,18 @@ function allRests(req, res, next) {
     });
     return Promise.all(promises)
     .then((addresses) => {
+      var userName;
+      if (req.session.user) {
+        userName = req.session.user.first_name;
+      } else {
+        userName = false;
+      }
       addresses.forEach((address, i) => {
         rests[i].address = address;
       });
       renderObject.title = 'All restaurants!';
       renderObject.rests = rests;
+      renderObject.userName = userName;
     });
   })
   .then(() => {

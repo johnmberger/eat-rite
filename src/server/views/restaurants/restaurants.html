@@ -25,12 +25,6 @@
           <a href="/restaurant/{{rest.id}}"><img class="img-responsive"src="./img/{{rest.cuisine_type}}.jpeg"></a>
         </div>
         <div class="col-md-5 restaurant-info">
-          <div class="col-md-12">
-            <!-- edit link to edit THAT restaurant -->
-            <a href="/restaurant/{{ rest.id }}/edit-restaurant" class="btn btn-sm btn-primary pull-left">Edit</a>
-            <!-- delete link to delete THAT restaurant -->
-            <a href="#"class="btn btn-sm btn-danger pull-left">Delete</a>
-          </div>
           <a href="/restaurant/{{rest.id}}">
             <h2>{{rest.name}}</h2>
           </a>
@@ -45,6 +39,11 @@
         <div class="col-md-12">
           <br>
           <p>{{rest.description}}</p>
+        </div>
+        <div class="col-md-12 edit-delete">
+          <a href="/restaurant/{{ rest.id }}/edit-restaurant">Edit</a>
+          <a> | </a>
+          <a href="#">Delete</a>
         </div>
       </div>
     </div>

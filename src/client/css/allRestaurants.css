@@ -2,6 +2,12 @@
   .individual-restaurant {
     height: 350px;
   }
+  .edit-delete {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    text-align: right;
+  }
 }
 .restaurantImage {
   height: 200px;
@@ -33,4 +39,11 @@ p {
 }
 .restaurant-pic {
   margin-bottom: 5px;
+}
+.edit-delete {
+  text-align: right;
+  padding-bottom: 15px;
+}
+.edit-container {
+  max-width: 800px;
 }
