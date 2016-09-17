@@ -2,12 +2,12 @@ const knex = require('../db/knex');
 
 function oneRestDelete(searchID) {
   return knex('reviews').where('restaurant_id', searchID).del()
-  .then((result) => {
+  .then(() => {
     knex('employees').where('restaurant_id', searchID).del()
-    .then((result) => {
+    .then(() => {
       knex('restaurants').where('id', searchID).del()
-      .then((data) => {
-        return data;
+      .then(() => {
+        return;
       });
     });
   });
@@ -30,14 +30,15 @@ function oneRest(searchID) {
       review.review_date = review.review_date.toDateString();
     });
     var average = total / reviews.length;
-    var renderObject = {};
-    renderObject.numberReviews = reviews.length;
-    renderObject.allReviews = reviews;
-    renderObject.title = result[0][0].name;
-    renderObject.rest = result[0][0];
-    renderObject.score = average;
-    renderObject.employees = result[0];
-    renderObject.id = searchID;
+    var renderObject = {
+      numberReviews: reviews.length,
+      allReviews: reviews,
+      title: result[0][0].name,
+      rest: result[0][0],
+      score: average,
+      employees: result[0],
+      id: searchID
+    };
     return renderObject;
   }).catch((err) => {
     return err;
@@ -46,7 +47,6 @@ function oneRest(searchID) {
 
 function restUpdate(req, res, next) {
   let name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
-  console.log(name);
   const id = parseInt(req.params.id);
   const updatedName = name;
   const updatedCuisine = req.body.rest_cuisine;
