@@ -26,8 +26,9 @@
       <a href="#" style="float: right" class="btn btn-primary">Edit</a>
       <button style="float: right" class="btn btn-danger" id="delete-restaurant" data-id={{id}}>Delete Restaurant</button>
       {% endif %}
+      {% if userName %}
       <a href="/review/{{id}}" style="float: right" class="btn btn-success">Write a Review</a>
-
+      {% endif %}
       <h2>{{rest.name}}</h2>
 
       <p>{{rest.cuisine_type}}</p><span class="stars">{{score}}</span>
