@@ -11,17 +11,13 @@ function allRests(req, res, next) {
     return Promise.all(promises)
     .then((addresses) => {
       var userName;
-      if (req.session.user) {
-        userName = req.session.user.first_name;
-      } else {
-        userName = false;
-      }
+      if (req.session.user) renderObject.userName = req.session.user.first_name;
+      if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
       addresses.forEach((address, i) => {
         rests[i].address = address;
       });
       renderObject.title = 'All restaurants!';
       renderObject.rests = rests;
-      renderObject.userName = userName;
     });
   })
   .then(() => {
@@ -34,26 +30,30 @@ function addRestPage(req, res, next) {
 }
 
 function addRest(req, res, next) {
-  let restInfo = {
+  let newRest = {
     name: req.body.name,
     cuisine_type: req.body.cuisine_type,
     description: req.body.description
   };
-  if (restInfo.name && restInfo.cuisine_type && restInfo.description) {
-    knex('restaurants').insert({
-      name: restInfo.name,
-      cuisine_type: restInfo.cuisine_type,
-      description: restInfo.description
-    })
-    .then(() => {
-      console.log('Restaurant added');
-      res.redirect('restaurants');
+  let newRestAdd = {
+    line_1: req.body.line1,
+    line_2: req.body.line2,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip
+  };
+  knex('addresses')
+  .insert(newRestAdd)
+  .returning('id')
+  .then ((id) => {
+    newRest.address_id = parseInt(id);
+    knex('restaurants')
+    .insert(newRest)
+    .returning('id')
+    .then ((id) => {
+      res.redirect(`/restaurant/${id}`);
     });
-    // console.log('rests', Rests);
-  } else {
-    console.log('One or more  text fields are empty');
-    res.redirect('add-restaurant');
-  }
+  });
 }
 
 module.exports = {

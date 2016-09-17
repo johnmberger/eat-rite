@@ -1,6 +1,5 @@
 
 window.onload = function() {
-    console.log('on the new user session js page!!!!');
     // If sessionStorage is storing default values (ex. name), exit the function and do not restore data
     if (sessionStorage.getItem('name') === 'name') {
       return;

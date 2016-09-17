@@ -14,10 +14,11 @@
     <div class="col-md-12">
       <h2 class="title text-center">All Restaurants</h2>
     </div>
+    {% if is_admin %}
     <div class="col-md-12 add-restaurant">
       <a href="/restaurants/add-restaurant" type="button" class="btn btn-success btn-lg">Add a restaurant!</a>
-      </a>
     </div>
+    {% endif %}
     {% for rest in rests %}
     <div class="col-lg-6">
       <div class="col-md-12 individual-restaurant">

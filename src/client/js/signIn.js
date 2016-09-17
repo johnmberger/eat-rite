@@ -12,8 +12,9 @@ $('#signIn').on('click', (e) => {
     data: payload
   }).done((data) => {
     if (data.message) {
-      window.location.replace('/');
+      window.location.href = document.referrer;
     } else {
+      $('#password').val('');
       $('#error').html(`<div>${data.error}</div>`);
     }
   });
