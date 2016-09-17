@@ -3,7 +3,7 @@ const faker = require('faker');
 function reviewSeed(knex) {
 
   return knex('reviews').insert({
-    content: faker.lorem.sentences(4),
+    content: faker.lorem.sentences(5),
     rating: faker.random.number({
       min: 1,
       max: 5
