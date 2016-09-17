@@ -4,7 +4,7 @@ const knex = require('../db/knex');
 const userFunctions = require('../controllers/signuphelpers');
 
 router.get('/', function (req, res, next) {
-  res.render('newUser', {title: 'New User Page'});
+  res.render('newUser', {title: 'Eat Rite | New User'});
 });
 
 router.post('/', userFunctions.passwordValidation, (req, res, next) => {
