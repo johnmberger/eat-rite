@@ -46,40 +46,44 @@ function oneRest(searchID) {
 }
 
 function restUpdate(req, res, next) {
-  let name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
-  const id = parseInt(req.params.id);
-  const updatedName = name;
-  const updatedCuisine = req.body.rest_cuisine;
-  const updatedDescription = req.body.description;
-  const updatedStreet = req.body.line_1;
-  const updatedCity = req.body.city;
-  const updatedState = req.body.state;
-  const updatedZip = req.body.zip;
-  knex('restaurants')
-  .update({
-    name: updatedName,
-    cuisine_type: updatedCuisine,
-    description: updatedDescription
-  })
-  .where('id', id)
-  .returning('*')
-  .then((results) => {
-    knex('addresses')
+  if (req.session.user.is_admin) {
+    let name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
+    const id = parseInt(req.params.id);
+    const updatedName = name;
+    const updatedCuisine = req.body.rest_cuisine;
+    const updatedDescription = req.body.description;
+    const updatedStreet = req.body.line_1;
+    const updatedCity = req.body.city;
+    const updatedState = req.body.state;
+    const updatedZip = req.body.zip;
+    knex('restaurants')
     .update({
-      line_1: updatedStreet,
-      city: updatedCity,
-      state: updatedState,
-      zip: updatedZip
+      name: updatedName,
+      cuisine_type: updatedCuisine,
+      description: updatedDescription
     })
     .where('id', id)
     .returning('*')
     .then((results) => {
-      res.status(200).json({
-        status: 'success',
-        message: `${results[0].name} has been updated!`
+      knex('addresses')
+      .update({
+        line_1: updatedStreet,
+        city: updatedCity,
+        state: updatedState,
+        zip: updatedZip
+      })
+      .where('id', id)
+      .returning('*')
+      .then((results) => {
+        res.status(200).json({
+          status: 'success',
+          message: `${results[0].name} has been updated!`
+        });
       });
     });
-  });
+  } else {
+    res.status(550).json({error: 'You do not have permission to do that.'});
+  }
 }
 
 module.exports = {

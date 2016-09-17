@@ -28,8 +28,7 @@ $('#rest-update').on('submit', function(e) {
       data: Restaurant
     })
     .done((data) => {
-      window.location.href = '/restaurants';
-      // location.reload();
+      window.location.href = document.referrer;
     })
     .fail((err) => {
       console.log(err);
