@@ -12,7 +12,11 @@ $('#signIn').on('click', (e) => {
     data: payload
   }).done((data) => {
     if (data.message) {
-      window.location.href = document.referrer;
+      if (document.referrer.includes('newuser')) {
+        window.location.href = '/';
+      } else {
+        window.location.href = document.referrer;
+      }
     } else {
       $('#password').val('');
       $('#error').html(`<div>${data.error}</div>`);
