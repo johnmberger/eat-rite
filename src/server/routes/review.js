@@ -4,30 +4,24 @@ const knex  = require('../db/knex');
 var userName;
 
 router.get('/', (req, res, next) => {
-  const renderObj = {};
-  if (req.session.user) {
-    userName = req.session.user.first_name;
-  } else {
-    userName = false;
-  }
-  renderObj.title = 'Review Page';
-  renderObj.userName = userName;
-  res.render('review', renderObj);
+  const renderObject = {};
+  if (req.session.user) renderObject.userName = req.session.user.first_name;
+  if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
+  renderObject.title = 'Review Page';
+  res.render('review', renderObject);
 });
+
 router.get('/:id', (req, res, next) => {
   let id = req.params.id;
   knex('restaurants').where('id', id)
   .then((result) => {
-    const renderObj = {};
-    if (req.session.user) {
-      userName = req.session.user.first_name;
-    } else {
-      userName = false;
-    }
-    renderObj.userName = userName;
-    renderObj.title = 'Review Page';
-    renderObj.result = result;
-    res.render('review', renderObj);
+    const renderObject = {
+      title: 'Review Page',
+      result: result
+    };
+    if (req.session.user) renderObject.userName = req.session.user.first_name;
+    if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
+    res.render('review', renderObject);
   });
 });
 

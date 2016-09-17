@@ -5,16 +5,10 @@ const knex = require('../db/knex');
 
 router.get('/:id', (req, res, next) => {
   const searchID = req.params.id;
-  const reviews = [];
   oneRestaurantController.oneRest(searchID)
   .then((renderObject) => {
-    var userName;
-    if (req.session.user) {
-      userName = req.session.user.first_name;
-    } else {
-      userName = false;
-    }
-    renderObject.userName = userName;
+    if (req.session.user) renderObject.userName = req.session.user.first_name;
+    if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
     res.render('restaurants/one-restaurant', renderObject);
   })
   .catch((err) => {
@@ -25,12 +19,8 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/edit-restaurant', (req, res, next) => {
   const searchID = req.params.id;
   const renderObject = {};
-  var userName;
-  if (req.session.user) {
-    userName = req.session.user.first_name;
-  } else {
-    userName = false;
-  }
+  if (req.session.user) renderObject.userName = req.session.user.first_name;
+  if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
   knex('restaurants').where('id', searchID).then(rests => {
     let promises = rests.map(rest => {
       return knex('addresses')
@@ -42,7 +32,6 @@ router.get('/:id/edit-restaurant', (req, res, next) => {
         rests.address = address;
       });
       renderObject.rest = rests;
-      renderObject.userName = userName;
     });
   })
   .then(() => {
@@ -55,7 +44,7 @@ router.put('/:id/edit-restaurant', oneRestaurantController.restUpdate);
 router.delete('/:id/delete', (req, res, next) => {
   const searchID = parseInt(req.params.id);
   oneRestaurantController.oneRestDelete(searchID)
-  .then((renderObject) => {
+  .then(() => {
     res.send('success!');
   })
   .catch((err) => {

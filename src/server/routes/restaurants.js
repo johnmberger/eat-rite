@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const knex = require('knex');
-const db  = require('../db/knex');
+const knex  = require('../db/knex');
 const restsController = require('../controllers/restaurants');
 
 router.get('/', restsController.allRests);
@@ -20,12 +19,12 @@ router.post('/add-restaurant', (req, res, next) => {
     state: req.body.state,
     zip: req.body.zip
   };
-  db('addresses')
+  knex('addresses')
   .insert(newRestAdd)
   .returning('id')
   .then ((id) => {
     newRest.address_id = parseInt(id);
-    db('restaurants')
+    knex('restaurants')
     .insert(newRest)
     .returning('id')
     .then ((id) => {
