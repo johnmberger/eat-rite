@@ -26,6 +26,8 @@ function oneRest(searchID) {
     var total = 0;
     reviews.forEach(review => {
       total += Number(review.rating);
+      review.last_name = review.last_name.split('')[0];
+      review.review_date = review.review_date.toDateString();
     });
     var average = total / reviews.length;
     var renderObject = {};

@@ -15,10 +15,6 @@ router.get('/:id', (req, res, next) => {
       userName = false;
     }
     renderObject.userName = userName;
-    renderObject.allReviews.forEach((review) => {
-      review.last_name = review.last_name.split('')[0];
-      review.review_date = review.review_date.toDateString();
-    });
     res.render('restaurants/one-restaurant', renderObject);
   })
   .catch((err) => {
