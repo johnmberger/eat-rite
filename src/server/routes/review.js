@@ -45,4 +45,5 @@ router.post('/:id', checkUserFunc.checkUser, (req, res, next) => {
     res.redirect(`/restaurant/${id}`);
   });
 });
+
 module.exports = router;
