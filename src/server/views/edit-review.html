@@ -11,11 +11,11 @@
   <h1>{{ title }}</h1>
 </div>
 <form class="form-horizontal col-lg-4" id="rev-update">
-  <fieldset class="prev-rating" rating="{{result[0].rating}}">
+  <fieldset class="prev-rating" rating="{{result.rating}}">
     <div class="form-group">
       <label for="inputReview" class="col-lg-2 control-label">Review:</label>
       <div class="col-lg-10">
-        <textarea class="form-control" rows="3" name="reviewText" id="updated-review">{{ result[0].content }}</textarea>
+        <textarea class="form-control" rows="3" name="reviewText" id="updated-review">{{ result.content }}</textarea>
       </div>
       <div>
         <label for="rating" class="col-lg-2 control-label">Stars:</label>
