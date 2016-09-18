@@ -28,6 +28,7 @@ router.get('/:id', (req, res, next) => {
   });
 });
 
+// needs validation for rating or it breaks
 router.post('/:id', checkUserFunc.checkUser, (req, res, next) => {
   let id = req.params.id;
   let newReview = {
