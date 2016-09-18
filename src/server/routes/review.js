@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const knex  = require('../db/knex');
+const checkUserFunc = require('../controllers/signuphelpers');
 
 router.get('/', (req, res, next) => {
   const renderObj = {};
@@ -32,7 +33,9 @@ function oneRest(req, res, next) {
   });
 }
 
-router.post('/:id', (req, res, next) => {
+router.post('/:id', checkUserFunc.checkUser, (req, res, next) => {
+  console.log('req', req);
+  console.log('res', res);
   let id = req.params.id;
   let newReview = {
     restaurant_id: id,

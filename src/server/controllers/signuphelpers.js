@@ -12,6 +12,11 @@ function passwordValidation (req, res, next) {
   .where('email', userEmail)
   .then ((user) => {
     // const renderObject = {};
+    var str = req.body.password;
+    var upper = (/[A-Z]/.test(str));
+    var lower = (/[a-z]/.test(str));
+    var number = (/[0-9]/.test(str));
+
     if (user.length) {
       const renderObject = {};
       renderObject.alertIsUser = 'You already have an account set up with that email.';
@@ -21,7 +26,7 @@ function passwordValidation (req, res, next) {
       const renderObject = {};
       renderObject.alertShort = 'You have at least one empty field.';
       res.render('newUser', renderObject);
-    } else if (req.body.password.length < 8) {
+    }else if (req.body.password.length < 8) {
       const renderObject = {};
       renderObject.alertPass = 'Your password needs to be at least 8 characters long.';
       res.render('newUser', renderObject);
@@ -39,12 +44,18 @@ function passwordValidation (req, res, next) {
       renderObject.alertNoEmail = 'You did not type in an email.';
       req.body.err = true;
       res.render('newUser', renderObject);
+    } else if (upper === false || lower === false || number === false) {
+      const renderObject = {};
+      renderObject.valPass = 'Your password does not meet our requirements.';
+      req.body.err = true;
+      res.render('newUser', renderObject);
     } else {
       console.log('match');
     }
     next();
   });
 }
+
 //hashing salt
 function hashSalt (password) {
   var hashed = bcrypt.hashSync(password, 2);
@@ -63,8 +74,19 @@ function createUser(req, userObject) {
   return knex('users').insert(newUser);
 }
 
+function checkUser(req, res, next) {
+  console.log('in checkerUser function!!!!');
+  if (true) {
+    return true;
+  } else {
+    return false;
+  }
+  return (true);
+}
+
 module.exports = {
   passwordValidation,
   hashSalt,
-  createUser
+  createUser,
+  checkUser
 };

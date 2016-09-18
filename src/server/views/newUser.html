@@ -19,7 +19,8 @@
         {{alertNoEmail}}
         {{alertLength}}
         {{alertShort}}
-        {{alertPass}}</p>
+        {{alertPass}}
+        {{valPass}}</p>
         <div class="form-group">
           <label for="first_name">First Name</label>
           <input class="form-control first_name" type="text" name="first_name" placeholder="First Name">
@@ -46,7 +47,7 @@
         </div>
 
         <div class="form-group">
-          <input class="btn btn-submit btn-lg center-block newUserButton" type="submit" value="submit">
+          <input class="btn btn-submit btn-lg center-block newUserButton" type="submit" value="submit" onclick="checkPassword(password)">
         </div>
       </div>
 </form>
