@@ -10,11 +10,14 @@ body {
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: #efefef;
+  background-color: darkgrey;
   text-align: center;
 }
 a {
   color: #00B7FF;
+}
+.featured-restaurants {
+  padding-bottom: 60px;
 }
 
 span.stars, span.stars span {
