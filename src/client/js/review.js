@@ -28,4 +28,24 @@
       });
     });
 
+  $(document).on('click', '#delete-review', function(e) {
+    e.preventDefault();
+    const answer = confirm('Are you sure? This can\'t be undone');
+    //
+    if (answer) {
+      let restId = window.location.pathname.split('/')[2];
+      const revId = $(this).attr('data-id');
+      $.ajax({
+        type: 'DELETE',
+        url: `/review/${revId}/delete/${restId}`
+      })
+      .done((data) => {
+        location.reload();
+      })
+      .fail((err) => {
+        console.log(err);
+      });
+    }
+  });
+
 }());
