@@ -48,6 +48,7 @@
           </p>
 
           <a href="/review/{{review.id}}/edit-review/{{id}}" class="btn btn-sm btn-success">edit</a>
+          <button id="delete-review" data-id={{review.id}} class="btn btn-sm btn-danger"> Delete</button>
         </div>
         {% endfor %}
       </div>
@@ -59,4 +60,5 @@
 
 {% block scripts %}
 <script type="text/javascript" src="/js/restaurant.js"></script>
+<script type="text/javascript" src="/js/review.js"></script>
 {% endblock %}

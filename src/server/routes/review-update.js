@@ -3,23 +3,30 @@ const router = express.Router();
 const knex  = require('../db/knex');
 const one_Rest = require('../controllers/restaurant').oneRest;
 
-router.get('/', (req, res, next) => {
-  const renderObject = {};
-  if (req.session.user) renderObject.userName = req.session.user.first_name;
-  if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
-  renderObject.title = 'Review Page';
-  res.render('review', renderObject);
+router.delete('/:id/delete/:id2', (req, res, next) => {
+  let revId =  req.params.id;
+  let restId = req.params.id2;
+  knex('reviews')
+  .select('*', 'reviews.created_at as review_date')
+  .where('restaurant_id', restId)
+  .andWhere('user_id', revId).del().then(() => {
+    res.send('success!');
+  })
+  .catch((err) => {
+    return next(err);
+  });
 });
 
 router.get('/:id/edit-review/:id2', (req, res, next) => {
+
   let searchID = req.params.id;
   let restId =  req.params.id2;
-  Promise.all([
-    knex('reviews')
-    .select('*', 'reviews.created_at as review_date')
-    .where('restaurant_id', restId)
-    .andWhere('user_id', searchID).first()
-  ]).then((result) => {
+
+  knex('reviews')
+  .select('*', 'reviews.created_at as review_date')
+  .where('restaurant_id', restId)
+  .andWhere('user_id', searchID).first()
+  .then((result) => {
     const renderObj = {};
     renderObj.title = 'Edit Review';
     renderObj.result = result;

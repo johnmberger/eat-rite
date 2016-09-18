@@ -29,8 +29,6 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/:id', checkUserFunc.checkUser, (req, res, next) => {
-  console.log('req', req);
-  console.log('res', res);
   let id = req.params.id;
   let newReview = {
     restaurant_id: id,
@@ -38,7 +36,6 @@ router.post('/:id', checkUserFunc.checkUser, (req, res, next) => {
     rating: req.body.rating,
     user_id: req.session.user.user_id
   };
-  // console.log(newReview);
   knex('reviews')
   .insert(newReview)
   .then (() => {
