@@ -30,7 +30,7 @@
       {% endif %}
       {% if userName %}
       <a href="/review/{{id}}" style="float: right" class="btn btn-success">Write a Review</a>
-      {$ else %}
+      {% else %}
       <a href="/signin" style="float: right" class="btn btn-success">Sign in to Review</a>
       {% endif %}
       <h2>{{rest.name}}</h2>
@@ -48,9 +48,11 @@
           <p>
             {{review.content}}
           </p>
-
-          <a href="/review/{{review.id}}/edit-review/{{id}}" class="btn btn-sm btn-success">edit</a>
-          <button id="delete-review" data-id={{review.id}} class="btn btn-sm btn-danger"> Delete</button>
+          {% if review.user_id === user_id %}
+          <a href="/review/{{review.id}}/edit-review/{{id}}">Edit</a>
+          |
+          <a href="#" id="delete-review" data-id={{review.id}}> Delete</a>
+          {% endif %}
         </div>
         {% endfor %}
       </div>

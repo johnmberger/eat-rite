@@ -9,6 +9,7 @@ router.get('/:id', (req, res, next) => {
   .then((renderObject) => {
     if (req.session.user) renderObject.userName = req.session.user.first_name;
     if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
+    if (req.session.user) renderObject.user_id = req.session.user.user_id;
     res.render('restaurants/one-restaurant', renderObject);
   })
   .catch((err) => {
