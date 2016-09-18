@@ -82,11 +82,7 @@ function checkUser(req, res, next) {
 
 module.exports = {
   passwordValidation,
-<<<<<<< HEAD
-  createUser
-=======
-  hashSalt,
   createUser,
+  hashSalt,
   checkUser
->>>>>>> gina
 };
