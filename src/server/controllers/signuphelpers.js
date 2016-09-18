@@ -72,12 +72,13 @@ function createUser(req, userObject) {
 
 function checkUser(req, res, next) {
   console.log('in checkerUser function!!!!');
-  if (true) {
-    return true;
-  } else {
-    return false;
+  console.log(req.session.user);
+  if (!req.session.user) {
+    res.render('/signIn', {
+      loginError: 'You must be logged in to do that.'
+    });
   }
-  return (true);
+  next();
 }
 
 module.exports = {
