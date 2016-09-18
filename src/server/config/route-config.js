@@ -11,7 +11,8 @@
     const restaurant = require('../routes/restaurant');
     const restaurants = require('../routes/restaurants');
     const review = require('../routes/review');
-    const addRestaurant = require('../routes/add-restaurant');
+    const review_update = require('../routes/review-update');
+    const signOut = require('../routes/signOut');
 
     // *** register routes *** //
     app.use('/', routes);
@@ -20,7 +21,8 @@
     app.use('/restaurant', restaurant);
     app.use('/restaurants', restaurants);
     app.use('/review', review);
-    app.use('/add-restaurant', addRestaurant);
+    app.use('/review', review_update);
+    app.use('/signOut', signOut);
   };
 
 })(module.exports);

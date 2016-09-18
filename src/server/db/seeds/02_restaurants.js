@@ -14,7 +14,7 @@ function restaurantSeed(knex, id) {
   return knex('restaurants').insert({
     name: `${faker.commerce.productAdjective()} ${faker.name.firstName()}'s`,
     cuisine_type: cuisines[faker.random.number(cuisines.length - 1)],
-    description: faker.lorem.paragraph(),
+    description: faker.lorem.sentences(5),
     address_id: id
   });
 }

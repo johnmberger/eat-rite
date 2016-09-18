@@ -3,7 +3,6 @@
 {% block title %}{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="/css/oneRestaurant.css">
 <link rel="stylesheet" href="/css/nav.css">
 {% endblock %}
 
@@ -15,18 +14,23 @@
   <div class="row">
     <div class="col-md-6">
       <img class="restaurantImage img-responsive" src="/img/{{rest.cuisine_type}}.jpeg">
-      {% for employee in employees %}
-      <div class="col-md-12">
-        <h2>{{employee.role}}</h2>
-        <h3>{{employee.first_name}} {{employee.last_name}}</h3>
-      </div>
-      {% endfor %}
+      {% if is_admin %}
+        {% for employee in employees %}
+        <div class="col-md-12">
+          <h2>{{employee.role}}</h2>
+          <h3>{{employee.first_name}} {{employee.last_name}}</h3>
+        </div>
+        {% endfor %}
+      {% endif %}
     </div>
     <div class="col-md-6">
+      {% if is_admin %}
       <a href="#" style="float: right" class="btn btn-primary">Edit</a>
       <button style="float: right" class="btn btn-danger" id="delete-restaurant" data-id={{id}}>Delete Restaurant</button>
+      {% endif %}
+      {% if userName %}
       <a href="/review/{{id}}" style="float: right" class="btn btn-success">Write a Review</a>
-
+      {% endif %}
       <h2>{{rest.name}}</h2>
 
       <p>{{rest.cuisine_type}}</p><span class="stars">{{score}}</span>
@@ -37,7 +41,7 @@
         <h2 class>{{numberReviews}} Reviews</h2>
         {% for review in allReviews %}
         <div class="col-md-12">
-          <h3>{{review.first_name}} {{review.last_name}} on {{review.review_date}}</h3>
+          <h3>{{review.first_name}} {{review.last_name}}. on {{review.review_date}}</h3>
           <span class="stars">{{review.rating}}</span>
           <p>
             {{review.content}}

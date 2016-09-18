@@ -2,12 +2,12 @@ const knex = require('../db/knex');
 
 function oneRestDelete(searchID) {
   return knex('reviews').where('restaurant_id', searchID).del()
-  .then((result) => {
+  .then(() => {
     knex('employees').where('restaurant_id', searchID).del()
-    .then((result) => {
+    .then(() => {
       knex('restaurants').where('id', searchID).del()
-      .then((data) => {
-        return data;
+      .then(() => {
+        return;
       });
     });
   });
@@ -26,16 +26,19 @@ function oneRest(searchID) {
     var total = 0;
     reviews.forEach(review => {
       total += Number(review.rating);
+      review.last_name = review.last_name.split('')[0];
+      review.review_date = review.review_date.toDateString();
     });
     var average = total / reviews.length;
-    var renderObject = {};
-    renderObject.numberReviews = reviews.length;
-    renderObject.allReviews = reviews;
-    renderObject.title = result[0][0].name;
-    renderObject.rest = result[0][0];
-    renderObject.score = average;
-    renderObject.employees = result[0];
-    renderObject.id = searchID;
+    var renderObject = {
+      numberReviews: reviews.length,
+      allReviews: reviews,
+      title: result[0][0].name,
+      rest: result[0][0],
+      score: average,
+      employees: result[0],
+      id: searchID
+    };
     return renderObject;
   }).catch((err) => {
     return err;
@@ -43,41 +46,44 @@ function oneRest(searchID) {
 }
 
 function restUpdate(req, res, next) {
-  let name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
-  console.log(name);
-  const id = parseInt(req.params.id);
-  const updatedName = name;
-  const updatedCuisine = req.body.rest_cuisine;
-  const updatedDescription = req.body.description;
-  const updatedStreet = req.body.line_1;
-  const updatedCity = req.body.city;
-  const updatedState = req.body.state;
-  const updatedZip = req.body.zip;
-  knex('restaurants')
-  .update({
-    name: updatedName,
-    cuisine_type: updatedCuisine,
-    description: updatedDescription
-  })
-  .where('id', id)
-  .returning('*')
-  .then((results) => {
-    knex('addresses')
+  if (req.session.user.is_admin) {
+    let name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
+    const id = parseInt(req.params.id);
+    const updatedName = name;
+    const updatedCuisine = req.body.rest_cuisine;
+    const updatedDescription = req.body.description;
+    const updatedStreet = req.body.line_1;
+    const updatedCity = req.body.city;
+    const updatedState = req.body.state;
+    const updatedZip = req.body.zip;
+    knex('restaurants')
     .update({
-      line_1: updatedStreet,
-      city: updatedCity,
-      state: updatedState,
-      zip: updatedZip
+      name: updatedName,
+      cuisine_type: updatedCuisine,
+      description: updatedDescription
     })
     .where('id', id)
     .returning('*')
     .then((results) => {
-      res.status(200).json({
-        status: 'success',
-        message: `${results[0].name} has been updated!`
+      knex('addresses')
+      .update({
+        line_1: updatedStreet,
+        city: updatedCity,
+        state: updatedState,
+        zip: updatedZip
+      })
+      .where('id', id)
+      .returning('*')
+      .then((results) => {
+        res.status(200).json({
+          status: 'success',
+          message: `${results[0].name} has been updated!`
+        });
       });
     });
-  });
+  } else {
+    res.status(550).json({error: 'You do not have permission to do that.'});
+  }
 }
 
 module.exports = {

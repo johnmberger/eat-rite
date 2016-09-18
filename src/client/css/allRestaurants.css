@@ -1,3 +1,49 @@
+@media only screen and (min-width : 1200px) {
+  .individual-restaurant {
+    height: 350px;
+  }
+  .edit-delete {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    text-align: right;
+  }
+}
 .restaurantImage {
   height: 200px;
+}
+.all-restaurants {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+body {
+  background: lightgrey;
+}
+.individual-restaurant {
+  background: white;
+  padding: 20px 20px 0 20px;
+  margin-bottom: 25px;
+  width: 100%;
+}
+.title {
+  font-weight: bold;
+  font-size: 5rem;
+}
+p {
+  padding-bottom: 5px;
+}
+.add-restaurant {
+  text-align: center;
+  margin: auto auto 20px;
+}
+.restaurant-pic {
+  margin-bottom: 5px;
+}
+.edit-delete {
+  text-align: right;
+  padding-bottom: 15px;
+}
+.edit-container {
+  max-width: 800px;
 }

@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-
+{% if is_admin %}
   <h2 style="text-align: center">Add a restaurant!</h2>
 
   <form class="form-horizontal" action="/restaurants/add-restaurant" method="post">
@@ -67,6 +67,7 @@
       </div>
     </div>
   </form>
-
-
+{% else %}
+  <div class="alert">You do not have permission to view this page!</div>
+{% endif %}
 {% endblock %}

@@ -8,42 +8,46 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="col-md-6 portfolio-item">
-  <a href="/" type="button" class="btn btn-primary btn-lg">HOME</a>
-  </a>
-</div>
 <br>
-<div class="col-md-6 portfolio-item">
-  <a href="/restaurants/add-restaurant" type="button" class="btn btn-success btn-lg">Add a restaurant!</a>
-  </a>
-</div>
 
-  <div class="row">
+  <div class="all-restaurants container">
     <div class="col-md-12">
-      <h1 class="page-header">Galvanize Restaurants</h1>
+      <h2 class="title text-center">All Restaurants</h2>
     </div>
-  </div>
-
-  <div class="all-rests container">
-    <h2>Restaurant List</h2>
+    {% if is_admin %}
+    <div class="col-md-12 add-restaurant">
+      <a href="/restaurants/add-restaurant" type="button" class="btn btn-success btn-lg">Add a restaurant!</a>
+    </div>
+    {% endif %}
     {% for rest in rests %}
-    <div class="row restaurant-row">
-      <div class="col-md-4 restaurant-pic">
-        <a href="/restaurant/{{rest.id}}"><img class="img-responsive"src="./img/{{rest.cuisine_type}}.jpeg"></a>
-      </div>
-      <div class="col-md-8 restaurant-info">
-        <h4>Restaurant {{loop.index}}</h4>
-        <!-- edit link to edit THAT restaurant -->
-        <a href="/restaurant/{{ rest.id }}/edit-restaurant" style="float: right" class="btn btn-primary">Edit</a>
-        <!-- delete link to delete THAT restaurant -->
-        <a href="#" style="float: right" class="btn btn-danger">Remove</a>
-        <a href="/restaurant/{{rest.id}}"><h2>{{rest.name}}</h2></a>
-
-        <p>{{rest.cuisine_type}}</p>
-        <p>{{rest.address.line_1}} {{rest.address.city}}, {{rest.address.state}} {{rest.address.zip}}</p>
-        <p>{{rest.description}}</p>
-        <br>
+    <div class="col-lg-6">
+      <div class="col-md-12 individual-restaurant">
+        <div class="col-md-7 restaurant-pic">
+          <a href="/restaurant/{{rest.id}}"><img class="img-responsive"src="./img/{{rest.cuisine_type}}.jpeg"></a>
+        </div>
+        <div class="col-md-5 restaurant-info">
+          <a href="/restaurant/{{rest.id}}">
+            <h2>{{rest.name}}</h2>
+          </a>
+          <p>{{rest.cuisine_type}}</p>
+          <p>{{rest.address.line_1}} {{rest.address.line_2}}
+            <br>
+            {{rest.address.city}}, {{rest.address.state}}
+            <br>
+            {{rest.address.zip}}
+          </p>
+        </div>
+        <div class="col-md-12">
+          <br>
+          <p>{{rest.description}}</p>
+        </div>
+        <div class="col-md-12 edit-delete">
+          {% if is_admin %}
+          <a href="/restaurant/{{ rest.id }}/edit-restaurant">Edit </a>
+          |
+          <a href="#" id="delete-restaurant" data-id={{rest.id}}> Delete</a>
+          {% endif %}
+        </div>
       </div>
     </div>
     <br>
