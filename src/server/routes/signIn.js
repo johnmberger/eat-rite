@@ -10,6 +10,10 @@ router.post('/', (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   logIn(email, password, (err, results) => {
+<<<<<<< HEAD
+=======
+    //console.log(results);
+>>>>>>> gina
     switch (results) {
       case 'No user':
         res.json({error: 'Incorrect Password/Email'});
