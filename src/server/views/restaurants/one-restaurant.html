@@ -25,11 +25,13 @@
     </div>
     <div class="col-md-6">
       {% if is_admin %}
-      <a href="#" style="float: right" class="btn btn-primary">Edit</a>
+      <a href="/restaurant/{{ rest.id }}/edit-restaurant" style="float: right" class="btn btn-primary">Edit</a>
       <button style="float: right" class="btn btn-danger" id="delete-restaurant" data-id={{id}}>Delete Restaurant</button>
       {% endif %}
       {% if userName %}
       <a href="/review/{{id}}" style="float: right" class="btn btn-success">Write a Review</a>
+      {$ else %}
+      <a href="/signin" style="float: right" class="btn btn-success">Sign in to Review</a>
       {% endif %}
       <h2>{{rest.name}}</h2>
 
