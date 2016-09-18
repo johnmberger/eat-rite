@@ -22,7 +22,6 @@ function oneRest(searchID) {
     .orderBy('review_date', 'DESC')
   ])
   .then((result) => {
-    console.log(result);
     var reviews = result[1];
     var total = 0;
     reviews.forEach(review => {
