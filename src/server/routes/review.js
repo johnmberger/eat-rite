@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const knex  = require('../db/knex');
-const one_Rest = require('../controllers/restaurant').oneRest;
+
+const checkUserFunc = require('../controllers/signuphelpers');
+
+var userName;
 
 router.get('/', (req, res, next) => {
   const renderObject = {};
@@ -11,44 +14,35 @@ router.get('/', (req, res, next) => {
   res.render('review', renderObject);
 });
 
-router.get('/:id/edit-review/:id2', (req, res, next) => {
-  let searchID = req.params.id;
-  let restId =  req.params.id2;
-  Promise.all([
-    knex('reviews')
-    .select('*', 'reviews.created_at as review_date')
-    .where('restaurant_id', restId)
-    .andWhere('user_id', searchID).first()
-  ]).then((result) => {
-    const renderObj = {};
-    renderObj.title = 'Edit Review';
-    renderObj.result = result;
-    res.render('edit-review', renderObj);
+router.get('/:id', (req, res, next) => {
+  let id = req.params.id;
+  knex('restaurants').where('id', id)
+  .then((result) => {
+    const renderObject = {
+      title: 'Review Page',
+      result: result
+    };
+    if (req.session.user) renderObject.userName = req.session.user.first_name;
+    if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
+    res.render('review', renderObject);
   });
 });
 
-router.put('/edit-review', reviewUpdate);
-function reviewUpdate(req, res, next) {
-  let ids = req.headers.referer.split('/');
-  let rev = ids[4];
-  let rest = ids[6];
-  const update = {
-    content: req.body.content,
-    rating: parseInt(req.body.rating)
+router.post('/:id', checkUserFunc.checkUser, (req, res, next) => {
+  console.log('req', req);
+  console.log('res', res);
+  let id = req.params.id;
+  let newReview = {
+    restaurant_id: id,
+    content: req.body.reviewText,
+    rating: req.body.rating,
+    user_id: req.session.user.user_id
   };
+  // console.log(newReview);
   knex('reviews')
-  .select('*', 'reviews.created_at as review_date')
-  .where('restaurant_id', rest)
-  .andWhere('user_id', rev)
-  .update({
-    content: req.body.content,
-    rating: parseInt(req.body.rating)
-  })
-  .then((results) => {
-    res.status(200).json({
-      status: 'success'
-    });
+  .insert(newReview)
+  .then (() => {
+    res.redirect(`/restaurant/${id}`);
   });
-}
-
+});
 module.exports = router;
