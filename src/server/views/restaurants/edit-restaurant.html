@@ -11,33 +11,39 @@
 {% if is_admin %}
   <h2 class="text-center">Updating: {{rest[0].name}}</h2>
   <div class="container edit-container">
-    <form class="form-horizontal edit-form" id="rest-update">
+    <form class="edit-form" id="rest-update">
       <!-- name field -->
       <div class="form-group">
         <label class="control-label" for="name">Name:</label>
         <div class="">
-          <input type="text" name="name" class="form-control input-lg" id="rest-name" value="{{ rest[0].name }}" placeholder="Enter a restaurant name...">
+          <input type="text" name="name" class="form-control" id="rest-name" value="{{ rest[0].name }}" placeholder="Enter a restaurant name...">
         </div>
       </div>
-      <br>
       <!-- location field -->
       <div class="form-group">
-        <label class="control-label" for="location">Location:</label>
         <br>
           <label class="control-label" for="location">Street:</label>
-          <input type="text" id="line_1" name="line_1" class="form-control input-lg"  value="{{ rest.address.line_1 }}" placeholder="Enter a street name for your restaurant...">
+          <input type="text" id="line_1" name="line_1" class="form-control"  value="{{ rest.address.line_1 }}" placeholder="Enter a street name for your restaurant...">
           <label class="control-label" for="location">City:</label>
-          <input type="text" id="city" name="city" class="form-control input-lg"  value="{{ rest.address.city }}" placeholder="Enter a city for your restaurant...">
+          <input type="text" id="city" name="city" class="form-control"  value="{{ rest.address.city }}" placeholder="Enter a city for your restaurant...">
           <label class="control-label" for="location">State:</label>
-          <input type="text" id="state" name="state" class="form-control input-lg"  value="{{ rest.address.state }}" placeholder="Enter a state for your restaurant...">
+          <input type="text" id="state" name="state" class="form-control"  value="{{ rest.address.state }}" placeholder="Enter a state for your restaurant...">
           <label class="control-label" for="location">Zip code:</label>
-          <input type="number" id="zip" name="zip" class="form-control input-lg"  value="{{ rest.address.zip }}" placeholder="Enter a zip for your restaurant...">
+          <input type="number" id="zip" name="zip" class="form-control"  value="{{ rest.address.zip }}" placeholder="Enter a zip for your restaurant...">
         <br>
         <!-- cuisine field -->
         <div class="form-group">
           <label class="control-label" for="cuisine">Cuisine:</label>
-          <div class="">
-            <input type="text" name="cuisine_type" class="form-control input-lg" id="rest-cuisine" value="{{ rest[0].cuisine_type }}" placeholder="Enter a cuisine type for your restaurant...">
+          <div>
+            <select name="cuisine_type" class="form-control" id="rest-cuisine">
+              {% for cuisine in cuisines %}
+              {% if (cuisine == rest[0].cuisine_type) %}
+              <option value="{{cuisine}}" selected>{{cuisine}}</option>
+              {% else %}
+              <option value="{{cuisine}}">{{cuisine}}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
           </div>
         </div>
         <br>
@@ -45,14 +51,15 @@
         <div class="form-group">
           <label class="control-label" for="description">Description:</label>
           <div class="">
-            <textarea type="text" name="description" class="form-control input-lg" id="rest-description" placeholder="Enter a description for your restaurant...">{{ rest[0].description }}</textarea>
+            <textarea type="text" name="description" class="form-control" id="rest-description" placeholder="Enter a description for your restaurant..." rows="5">{{ rest[0].description }}</textarea>
           </div>
         </div>
         <br>
       </fieldset>
       <div class="form-group">
-        <div class="col-lg-offset-3">
-          <button type="submit" class="btn btn-default">Update restaurant!</button>
+        <div class="col-md-6 col-md-offset-3">
+          <button type="submit" class="btn btn-primary btn-block">Update restaurant!</button>
+          <br>
         </div>
       </div>
     </form>

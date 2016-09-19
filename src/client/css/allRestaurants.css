@@ -17,8 +17,11 @@
   flex-wrap: wrap;
   align-items: stretch;
 }
+.individual-restaurant h2 {
+  margin-top: 5px;
+}
 body {
-  background: lightgrey;
+  background: url(../img/shattered.png);
 }
 .individual-restaurant {
   background: white;
@@ -29,6 +32,7 @@ body {
 .title {
   font-weight: bold;
   font-size: 5rem;
+  margin-bottom: 25px;
 }
 p {
   padding-bottom: 5px;
