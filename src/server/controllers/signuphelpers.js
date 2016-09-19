@@ -6,7 +6,6 @@ function passwordValidation (req, res, next) {
   knex('users')
   .where('email', userEmail)
   .then ((user) => {
-    // const renderObject = {};
     var str = req.body.password;
     var upper = (/[A-Z]/.test(str));
     var lower = (/[a-z]/.test(str));
