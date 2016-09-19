@@ -5,13 +5,11 @@
 }
 .star-holder {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .star-label {
   float: left;
   margin-top: 5px;
-}
-.buttons {
-  margin-top: 25px;
 }
 /****** Style Star Rating Widget *****/
 
