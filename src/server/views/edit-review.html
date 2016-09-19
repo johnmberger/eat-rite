@@ -9,40 +9,32 @@
 
 <div class="container">
   <h1 class="text-center">{{ title }}</h1>
-  <form class="form col-lg-6 col-lg-offset-3" id="rev-update">
+  <form class="form-horizontal col-sm-6 col-sm-offset-3" id="rev-update">
     <fieldset class="prev-rating" rating="{{result.rating}}">
       <div class="form-group">
-        <label for="inputReview" class="col-lg-2 control-label">Review:</label>
-        <div class="col-lg-10">
-          <textarea class="form-control" rows="5" name="reviewText" id="updated-review">{{ result.content }}</textarea>
-        </div>
-        <div>
-          <label for="rating" class="col-lg-2 control-label">Stars:</label>
-
+        <label for="inputReview" class="control-label">Review:</label>
+        <textarea class="form-control" rows="5" name="reviewText" id="updated-review">{{ result.content }}</textarea>
+        <div class="col-sm-12 star-holder">
+          <label for="rating" class="star-label">Stars:</label>
           <div class="rating giveStars">
             <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-
             <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-
             <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-
             <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-
             <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-
           </div>
+          <br>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-lg-10 col-lg-offset-2">
-          <a href="#" class="btn btn-default">Cancel</a>
+        <div class="col-lg-12">
           <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="#" class="btn btn-default">Cancel</a>
         </div>
       </div>
     </fieldset>
   </form>
 </div>
-
 {% endblock %}
 
 {% block scripts %}
