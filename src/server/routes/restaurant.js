@@ -25,7 +25,7 @@ router.get('/:id/edit-restaurant', (req, res, next) => {
     if (req.session.user) renderObject.userName = req.session.user.first_name;
     if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
     knex('restaurants').where('id', searchID).then(rests => {
-      let promises = rests.map(rest => {
+      var promises = rests.map(rest => {
         return knex('addresses')
         .where({ id: rest.id }).first();
       });

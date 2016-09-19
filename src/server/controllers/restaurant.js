@@ -53,7 +53,7 @@ function oneRest(searchID) {
 
 function restUpdate(req, res, next) {
   if (req.session.user.is_admin) {
-    let name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
+    var name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
     const id = parseInt(req.params.id);
     const updatedName = name;
     const updatedCuisine = req.body.rest_cuisine;
