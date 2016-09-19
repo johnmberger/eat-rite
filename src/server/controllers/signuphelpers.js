@@ -18,12 +18,15 @@ function passwordValidation (req, res, next) {
       res.render('newUser', renderObject);
     } else if (req.body.first_name.length === 0 || req.body.last_name.length === 0 || req.body.email.length === 0 || req.body.password.length === 0 || req.body.confirm_password.length === 0) {
       renderObject.alertShort = 'You have at least one empty field.';
+      req.body.err = true;
       res.render('newUser', renderObject);
     } else if (req.body.password.length < 8) {
       renderObject.alertPass = 'Your password needs to be at least 8 characters long.';
+      req.body.err = true;
       res.render('newUser', renderObject);
     } else if (req.body.first_name.length > 41 || req.body.last_name.length > 41) {
       renderObject.alertLength = 'Your name is too long. Please use less than 40 characters.';
+      req.body.err = true;
       res.render('newUser', renderObject);
     } else if (req.body.password !==  req.body.confirm_password) {
       renderObject.alertMessage = 'Your passwords do not match.';
