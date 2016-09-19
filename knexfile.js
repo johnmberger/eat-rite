@@ -1,9 +1,9 @@
-const databaseName = 'dapdc7h58im0eg';
+const databaseName = 'gRestaurants';
 
 module.exports = {
   development: {
     client: 'postgresql',
-    connection: `postgres://jndwsaairtjett:vilTy6SnyMLVC1kkRkpAbtkc5j@ec2-54-225-81-90.compute-1.amazonaws.com:5432/dapdc7h58im0eg`,
+    connection: process.env.DATABASE_CONNECTION,
     port: 5432,
     migrations: {
       directory: __dirname + '/src/server/db/migrations'
