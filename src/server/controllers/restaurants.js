@@ -35,12 +35,12 @@ function addRestPage(req, res, next) {
 }
 
 function addRest(req, res, next) {
-  let newRest = {
+  var newRest = {
     name: req.body.name,
     cuisine_type: req.body.cuisine_type,
     description: req.body.description
   };
-  let newRestAdd = {
+  var newRestAdd = {
     line_1: req.body.line1,
     line_2: req.body.line2,
     city: req.body.city,
