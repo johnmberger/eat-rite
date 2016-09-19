@@ -24,7 +24,7 @@ exports.seed = function (knex, Promise) {
 
   var ArrayOfPromises = Array.from(iterationArray)
   .map((item, i) => {
-    let id = i + 1;
+    var id = i + 1;
     return restaurantSeed(knex, id);
   });
 
