@@ -8,6 +8,11 @@ $.fn.stars = function() {
   });
 };
 
+
+(function() {
+  $('span.stars').stars();
+})();
+
 $('#signOut').on('click', (e) => {
   e.preventDefault();
   $.ajax({
@@ -17,10 +22,6 @@ $('#signOut').on('click', (e) => {
     window.location.replace('/');
   });
 });
-
-(function() {
-  $('span.stars').stars();
-})();
 
 $(document).on('click', '#delete-restaurant', function() {
 
