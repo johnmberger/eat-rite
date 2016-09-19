@@ -5,7 +5,7 @@ const cuisines = require('../db/seeds/02_restaurants');
 function allRests(req, res, next) {
   const renderObject = {};
   knex('restaurants').orderBy('name', 'ASC').then(rests => {
-    let promises = rests.map(rest => {
+    var promises = rests.map(rest => {
       return knex('addresses')
       .where({ id: rest.id }).first();
     });
