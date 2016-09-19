@@ -15,6 +15,9 @@
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/restaurants">View All Restaurants</a></li>
+        {% if is_admin %}
+        <li><a href="/restaurants/add-restaurant">Add a Restaurant</a></li>
+        {% endif %}
         <li class="dropdown">
           {% if (userName) %}
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i>{{userName}}<span class="caret"></span></a>

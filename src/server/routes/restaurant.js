@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const oneRestaurantController = require('../controllers/restaurant');
 const knex = require('../db/knex');
+const cuisines = require('../db/seeds/02_restaurants');
 
 router.get('/:id', (req, res, next) => {
   const searchID = req.params.id;
@@ -34,6 +35,7 @@ router.get('/:id/edit-restaurant', (req, res, next) => {
           rests.address = address;
         });
         renderObject.rest = rests;
+        renderObject.cuisines = cuisines;
       });
     })
     .then(() => {

@@ -28,6 +28,8 @@ router.get('/:id/edit-review/:id2', (req, res, next) => {
   .andWhere('user_id', searchID).first()
   .then((result) => {
     const renderObj = {};
+    if (req.session.user) renderObj.userName = req.session.user.first_name;
+    if (req.session.user) renderObj.is_admin = req.session.user.is_admin;
     renderObj.title = 'Edit Review';
     renderObj.result = result;
     res.render('edit-review', renderObj);
