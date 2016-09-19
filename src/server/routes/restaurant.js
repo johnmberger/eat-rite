@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router();
 const oneRestaurantController = require('../controllers/restaurant');
 const knex = require('../db/knex');
+const cuisines = [
+  'American',
+  'Thai',
+  'Italian',
+  'Carribean',
+  'Indian',
+  'French',
+  'Mexican'
+];
 
 router.get('/:id', (req, res, next) => {
   const searchID = req.params.id;
@@ -9,6 +18,7 @@ router.get('/:id', (req, res, next) => {
   .then((renderObject) => {
     if (req.session.user) renderObject.userName = req.session.user.first_name;
     if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
+    if (req.session.user) renderObject.user_id = req.session.user.user_id;
     res.render('restaurants/one-restaurant', renderObject);
   })
   .catch((err) => {
@@ -23,7 +33,7 @@ router.get('/:id/edit-restaurant', (req, res, next) => {
     if (req.session.user) renderObject.userName = req.session.user.first_name;
     if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
     knex('restaurants').where('id', searchID).then(rests => {
-      let promises = rests.map(rest => {
+      var promises = rests.map(rest => {
         return knex('addresses')
         .where({ id: rest.id }).first();
       });
@@ -33,6 +43,7 @@ router.get('/:id/edit-restaurant', (req, res, next) => {
           rests.address = address;
         });
         renderObject.rest = rests;
+        renderObject.cuisines = cuisines;
       });
     })
     .then(() => {

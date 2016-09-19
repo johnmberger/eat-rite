@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  let id = req.params.id;
+  var id = req.params.id;
   knex('restaurants').where('id', id)
   .then((result) => {
     const renderObject = {
@@ -30,8 +30,8 @@ router.get('/:id', (req, res, next) => {
 
 // needs validation for rating or it breaks
 router.post('/:id', checkUserFunc.checkUser, (req, res, next) => {
-  let id = req.params.id;
-  let newReview = {
+  var id = req.params.id;
+  var newReview = {
     restaurant_id: id,
     content: req.body.reviewText,
     rating: req.body.rating,

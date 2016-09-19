@@ -19,7 +19,7 @@
         data: review
       })
       .done((data) => {
-        let num = window.location.pathname.split('/')[4];
+        var num = window.location.pathname.split('/')[4];
         window.location.href = `/restaurant/${num}`;
         // location.reload();
       })
@@ -33,7 +33,7 @@
     const answer = confirm('Are you sure? This can\'t be undone');
     //
     if (answer) {
-      let restId = window.location.pathname.split('/')[2];
+      var restId = window.location.pathname.split('/')[2];
       const revId = $(this).attr('data-id');
       $.ajax({
         type: 'DELETE',

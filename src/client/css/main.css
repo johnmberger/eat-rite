@@ -1,10 +1,23 @@
 body {
-  padding: 0;
+  padding: 0 0 60px 0;
+  min-height: 100vh;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  position: relative;
 }
-
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: darkgrey;
+  text-align: center;
+}
 a {
   color: #00B7FF;
+}
+.featured-restaurants {
+  padding-bottom: 60px;
 }
 
 span.stars, span.stars span {

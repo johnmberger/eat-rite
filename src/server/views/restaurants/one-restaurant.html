@@ -4,6 +4,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/one-restaurant.css">
 {% endblock %}
 
 {% block content %}
@@ -11,34 +12,61 @@
 <div class="all-rests container">
   <br>
   <br>
-  <div class="row">
+  <div>
     <div class="col-md-6">
-      <img class="restaurantImage img-responsive" src="/img/{{rest.cuisine_type}}.jpeg">
+      <h1>{{rest.name}}</h1>
+      <img class="restaurantImage img-responsive" src="/img/{{rest.cuisine_type | lower}}.jpeg">
+      <div class="col-md-12 restaurant-info">
+        <h3>{{rest.cuisine_type}}</h3>
+        <span class="stars">{{score}}</span>
+        <p>{{rest.location}}</p>
+        <p>
+          {{address.line_1}}
+          {% if address.line_2 %}
+          <br>
+          {{address.line_2}}
+          {% endif %}
+          <br>
+          {{address.city}}, {{address.state}}
+          <br>
+          {{address.zip}}
+        </p>
+        <p>{{rest.description}}</p>
+        <hr>
+      </div>
+
       {% if is_admin %}
+      <div class="col-md-12 employees">
+        <h2>Employees</h2>
+        <br>
         {% for employee in employees %}
-        <div class="col-md-12">
-          <h2>{{employee.role}}</h2>
-          <h3>{{employee.first_name}} {{employee.last_name}}</h3>
-        </div>
+        <h4>{{employee.role}}: <small>{{employee.first_name}} {{employee.last_name}}</small></h4>
+        <br>
         {% endfor %}
+      </div>
       {% endif %}
     </div>
     <div class="col-md-6">
       {% if is_admin %}
-      <a href="#" style="float: right" class="btn btn-primary">Edit</a>
+      <a href="/restaurant/{{id}}/edit-restaurant" style="float: right" class="btn btn-primary">Edit</a>
       <button style="float: right" class="btn btn-danger" id="delete-restaurant" data-id={{id}}>Delete Restaurant</button>
       {% endif %}
       {% if userName %}
       <a href="/review/{{id}}" style="float: right" class="btn btn-success">Write a Review</a>
+      {% else %}
+      <a href="/signin" style="float: right" class="btn btn-success">Sign in to Review</a>
       {% endif %}
-      <h2>{{rest.name}}</h2>
 
-      <p>{{rest.cuisine_type}}</p><span class="stars">{{score}}</span>
-      <p>{{rest.location}}</p>
-      <p>{{rest.description}}</p>
-      <hr>
       <div class="col-md-12">
-        <h2 class>{{numberReviews}} Reviews</h2>
+        {% if (numberReviews > 1) %}
+        <h2>{{numberReviews}} Reviews</h2>
+        {% elif (numberReviews === 0) %}
+        <br>
+        <br>
+        <h2 class="text-center">No Reviews Yet. Add one!</h2>
+        {% else %}
+        <h2>{{numberReviews}} Review</h2>
+        {% endif %}
         {% for review in allReviews %}
         <div class="col-md-12">
           <h3>{{review.first_name}} {{review.last_name}}. on {{review.review_date}}</h3>
@@ -46,9 +74,11 @@
           <p>
             {{review.content}}
           </p>
-
-          <a href="/review/{{review.id}}/edit-review/{{id}}" class="btn btn-sm btn-success">edit</a>
-          <button id="delete-review" data-id={{review.id}} class="btn btn-sm btn-danger"> Delete</button>
+          {% if review.user_id === user_id %}
+          <a href="/review/{{review.id}}/edit-review/{{id}}">Edit</a>
+          |
+          <a href="#" id="delete-review" data-id={{review.id}}> Delete</a>
+          {% endif %}
         </div>
         {% endfor %}
       </div>
@@ -59,6 +89,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="/js/restaurant.js"></script>
 <script type="text/javascript" src="/js/review.js"></script>
 {% endblock %}

@@ -24,22 +24,28 @@ function oneRest(searchID) {
   .then((result) => {
     var reviews = result[1];
     var total = 0;
+    var addressID = result[0][0].address_id;
     reviews.forEach(review => {
       total += Number(review.rating);
       review.last_name = review.last_name.split('')[0];
       review.review_date = review.review_date.toDateString();
     });
     var average = total / reviews.length;
-    var renderObject = {
-      numberReviews: reviews.length,
-      allReviews: reviews,
-      title: result[0][0].name,
-      rest: result[0][0],
-      score: average,
-      employees: result[0],
-      id: searchID
-    };
-    return renderObject;
+    return knex('addresses').where('id', addressID)
+    .then((address) => {
+      const renderObject = {
+        numberReviews: reviews.length,
+        allReviews: reviews,
+        title: result[0][0].name,
+        rest: result[0][0],
+        score: average,
+        employees: result[0],
+        address: address[0],
+        id: searchID
+      };
+      console.log(renderObject);
+      return renderObject;
+    });
   }).catch((err) => {
     return err;
   });
@@ -47,7 +53,7 @@ function oneRest(searchID) {
 
 function restUpdate(req, res, next) {
   if (req.session.user.is_admin) {
-    let name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
+    var name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
     const id = parseInt(req.params.id);
     const updatedName = name;
     const updatedCuisine = req.body.rest_cuisine;

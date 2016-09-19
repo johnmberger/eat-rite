@@ -21,7 +21,7 @@ function employeeSeed(knex) {
 exports.seed = function (knex, Promise) {
   const iterationArray = new Array(100);
 
-  let ArrayOfPromises = Array.from(iterationArray)
+  var ArrayOfPromises = Array.from(iterationArray)
   .map((item, i) => {
     return employeeSeed(knex);
   });
