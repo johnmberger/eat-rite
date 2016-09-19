@@ -2,7 +2,15 @@ const express = require('express');
 const router = express.Router();
 const oneRestaurantController = require('../controllers/restaurant');
 const knex = require('../db/knex');
-const cuisines = require('../db/seeds/02_restaurants');
+const cuisines = [
+  'American',
+  'Thai',
+  'Italian',
+  'Carribean',
+  'Indian',
+  'French',
+  'Mexican'
+];
 
 router.get('/:id', (req, res, next) => {
   const searchID = req.params.id;
