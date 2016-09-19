@@ -23,7 +23,7 @@
     <div class="col-lg-6">
       <div class="col-md-12 individual-restaurant">
         <div class="col-md-7 restaurant-pic">
-          <a href="/restaurant/{{rest.id}}"><img class="img-responsive"src="./img/{{rest.cuisine_type}}.jpeg"></a>
+          <a href="/restaurant/{{rest.id}}"><img class="img-responsive"src="./img/{{rest.cuisine_type | lower}}.jpeg"></a>
         </div>
         <div class="col-md-5 restaurant-info">
           <a href="/restaurant/{{rest.id}}">

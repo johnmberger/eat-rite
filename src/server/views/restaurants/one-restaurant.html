@@ -15,7 +15,7 @@
   <div>
     <div class="col-md-6">
       <h1>{{rest.name}}</h1>
-      <img class="restaurantImage img-responsive" src="/img/{{rest.cuisine_type}}.jpeg">
+      <img class="restaurantImage img-responsive" src="/img/{{rest.cuisine_type | lower}}.jpeg">
       <div class="col-md-12 restaurant-info">
         <h3>{{rest.cuisine_type}}</h3>
         <span class="stars">{{score}}</span>

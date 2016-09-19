@@ -13,7 +13,7 @@ function userSeed(knex) {
 exports.seed = function (knex, Promise) {
   const iterationArray = new Array(50);
 
-  let ArrayOfPromises = Array.from(iterationArray)
+  var ArrayOfPromises = Array.from(iterationArray)
   .map(() => {
     return userSeed(knex);
   });

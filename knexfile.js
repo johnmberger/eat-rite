@@ -3,7 +3,8 @@ const databaseName = 'gRestaurants';
 module.exports = {
   development: {
     client: 'postgresql',
-    connection: `postgres://localhost:5432/${databaseName}`,
+    connection: process.env.DATABASE_CONNECTION,
+    port: 5432,
     migrations: {
       directory: __dirname + '/src/server/db/migrations'
     },

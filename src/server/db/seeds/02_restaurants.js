@@ -22,13 +22,11 @@ function restaurantSeed(knex, id) {
 exports.seed = function (knex, Promise) {
   const iterationArray = new Array(50);
 
-  let ArrayOfPromises = Array.from(iterationArray)
+  var ArrayOfPromises = Array.from(iterationArray)
   .map((item, i) => {
-    let id = i + 1;
+    var id = i + 1;
     return restaurantSeed(knex, id);
   });
 
   return Promise.all(ArrayOfPromises);
 };
-
-module.exports = cuisines;

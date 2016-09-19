@@ -2,7 +2,15 @@ const express = require('express');
 const router = express.Router();
 const oneRestaurantController = require('../controllers/restaurant');
 const knex = require('../db/knex');
-const cuisines = require('../db/seeds/02_restaurants');
+const cuisines = [
+  'American',
+  'Thai',
+  'Italian',
+  'Carribean',
+  'Indian',
+  'French',
+  'Mexican'
+];
 
 router.get('/:id', (req, res, next) => {
   const searchID = req.params.id;
@@ -25,7 +33,7 @@ router.get('/:id/edit-restaurant', (req, res, next) => {
     if (req.session.user) renderObject.userName = req.session.user.first_name;
     if (req.session.user) renderObject.is_admin = req.session.user.is_admin;
     knex('restaurants').where('id', searchID).then(rests => {
-      let promises = rests.map(rest => {
+      var promises = rests.map(rest => {
         return knex('addresses')
         .where({ id: rest.id }).first();
       });

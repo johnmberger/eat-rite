@@ -28,7 +28,6 @@ $(document).on('click', '#delete-restaurant', function() {
 
   if (answer) {
     const restaurantID = $(this).attr('data-id');
-    // delete restaurant
     $.ajax({
       type: 'DELETE',
       url: `/restaurant/${restaurantID}/delete`

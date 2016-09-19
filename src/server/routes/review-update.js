@@ -4,8 +4,8 @@ const knex  = require('../db/knex');
 const one_Rest = require('../controllers/restaurant').oneRest;
 
 router.delete('/:id/delete/:id2', (req, res, next) => {
-  let revId =  req.params.id;
-  let restId = req.params.id2;
+  var revId =  req.params.id;
+  var restId = req.params.id2;
   knex('reviews')
   .select('*', 'reviews.created_at as review_date')
   .where('restaurant_id', restId)
@@ -19,8 +19,8 @@ router.delete('/:id/delete/:id2', (req, res, next) => {
 
 router.get('/:id/edit-review/:id2', (req, res, next) => {
 
-  let searchID = req.params.id;
-  let restId =  req.params.id2;
+  var searchID = req.params.id;
+  var restId =  req.params.id2;
 
   knex('reviews')
   .select('*', 'reviews.created_at as review_date')
@@ -38,9 +38,9 @@ router.get('/:id/edit-review/:id2', (req, res, next) => {
 
 router.put('/edit-review', reviewUpdate);
 function reviewUpdate(req, res, next) {
-  let ids = req.headers.referer.split('/');
-  let rev = ids[4];
-  let rest = ids[6];
+  var ids = req.headers.referer.split('/');
+  var rev = ids[4];
+  var rest = ids[6];
   const update = {
     content: req.body.content,
     rating: parseInt(req.body.rating)
