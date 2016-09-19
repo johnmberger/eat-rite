@@ -32,6 +32,7 @@ router.get('/:id/edit-review/:id2', (req, res, next) => {
     if (req.session.user) renderObj.is_admin = req.session.user.is_admin;
     renderObj.title = 'Edit Review';
     renderObj.result = result;
+    renderObj.id = parseInt(restId);
     res.render('edit-review', renderObj);
   });
 });
