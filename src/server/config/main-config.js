@@ -17,7 +17,9 @@
   ];
 
   // *** load environment variables *** //
-  // require('dotenv').config();
+  if (prprocess.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+  }
 
   appConfig.init = function(app, express) {
 
