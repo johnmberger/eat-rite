@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', (req, res, next) => {
-  const email = req.body.email;
+  const email = req.body.email.toLowerCase();
   const password = req.body.password;
   logIn(email, password, (err, results) => {
     switch (results) {

@@ -41,13 +41,13 @@
           <br>
           <p>{{rest.description}}</p>
         </div>
+        {% if is_admin %}
         <div class="col-md-12 edit-delete">
-          {% if is_admin %}
           <a href="/restaurant/{{ rest.id }}/edit-restaurant">Edit </a>
           |
-          <a href="#" id="delete-restaurant" data-id={{rest.id}}> Delete</a>
-          {% endif %}
+          <a href="#" id="delete-restaurant" data-id="{{rest.id}}"> Delete</a>
         </div>
+        {% endif %}
       </div>
     </div>
     <br>

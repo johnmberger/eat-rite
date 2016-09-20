@@ -42,17 +42,13 @@ function reviewUpdate(req, res, next) {
   var ids = req.headers.referer.split('/');
   var rev = ids[4];
   var rest = ids[6];
-  const update = {
-    content: req.body.content,
-    rating: parseInt(req.body.rating)
-  };
   knex('reviews')
   .select('*', 'reviews.created_at as review_date')
   .where('restaurant_id', rest)
   .andWhere('user_id', rev)
   .update({
-    content: req.body.content,
-    rating: parseInt(req.body.rating)
+    content: req.body.content || 'No comment.',
+    rating: parseInt(req.body.rating) || 1
   })
   .then((results) => {
     res.status(200).json({
