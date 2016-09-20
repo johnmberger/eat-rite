@@ -38,3 +38,10 @@ i {
   color: red;
   font-weight: bold;
 }
+
+.employee,
+.employee input {
+  display: flex;
+  margin: 10px 25px;
+  text-align: center;
+}

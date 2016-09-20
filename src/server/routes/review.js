@@ -33,8 +33,8 @@ router.post('/:id', checkUserFunc.checkUser, (req, res, next) => {
   var id = req.params.id;
   var newReview = {
     restaurant_id: id,
-    content: req.body.reviewText,
-    rating: req.body.rating,
+    content: req.body.reviewText || 'No comment.',
+    rating: req.body.rating || 1,
     user_id: req.session.user.user_id
   };
   knex('reviews')

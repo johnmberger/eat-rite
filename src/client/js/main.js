@@ -8,7 +8,6 @@ $.fn.stars = function() {
   });
 };
 
-
 (function() {
   $('span.stars').stars();
 })();
@@ -35,6 +34,23 @@ $(document).on('click', '#delete-restaurant', function() {
     })
     .done((data) => {
       window.location.href = '/restaurants';
+    })
+    .fail((err) => {
+      console.log(err);
+    });
+  }
+});
+
+$(document).on('click', '#delete-employee', function() {
+  const answer = confirm('Are you sure? This can\'t be undone');
+  if (answer) {
+    const employeeID = $(this).attr('data-id');
+    $.ajax({
+      type: 'DELETE',
+      url: `/restaurant/delete-employee/${employeeID}`
+    })
+    .done((data) => {
+      window.location.reload();
     })
     .fail((err) => {
       console.log(err);

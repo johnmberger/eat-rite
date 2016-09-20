@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/css/allRestaurants.css">
+<link rel="stylesheet" href="/css/nav.css">
+{% endblock %}
+
+{% block content %}
+{% if is_admin %}
+  <h2 class="text-center">Updating: {{rest.name}}</h2>
+  <div class="container edit-container">
+    <form>
+      <div class="form-group">
+        <div class="col-md-6">
+          <div class="employee">
+            <label for="firstName">First name:<input id="firstName" type="text" name="first_name" value="{{employee.first_name}}"></label>
+            <label for="lastName">Last name:<input id="lastName" type="text" name="last_name" value="{{employee.last_name}}"></label>
+            <label for="role">Role:<input id="role" type="text" name="role" value="{{employee.role}}"></label>
+            <input id="id" type="hidden" name="id" value="{{employee.id}}">
+            <input id="restID" type="hidden" name="restID" value="{{rest.id}}">
+          </div>
+          <button id="updateEmployee" type="button" class="col-md-4 btn btn-primary btn-block">Update employees!</button>
+          <br>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {% else %}
+    <div class="alert">You do not have permission to view this page!</div>
+  {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript" src="/js/updateEmployees.js"></script>
+{% endblock %}

@@ -21,10 +21,10 @@ function oneRest(searchID) {
     .leftJoin('users', 'users.id', 'reviews.user_id')
     .orderBy('review_date', 'DESC')
   ])
-  .then((result) => {
+  .then(result => {
+    var addressID = result[0][0].address_id;
     var reviews = result[1];
     var total = 0;
-    var addressID = result[0][0].address_id;
     reviews.forEach(review => {
       total += Number(review.rating);
       review.last_name = review.last_name.split('')[0];
@@ -32,7 +32,7 @@ function oneRest(searchID) {
     });
     var average = total / reviews.length;
     return knex('addresses').where('id', addressID)
-    .then((address) => {
+    .then(address => {
       const renderObject = {
         numberReviews: reviews.length,
         allReviews: reviews,
@@ -43,10 +43,9 @@ function oneRest(searchID) {
         address: address[0],
         id: searchID
       };
-      console.log(renderObject);
       return renderObject;
     });
-  }).catch((err) => {
+  }).catch(err => {
     return err;
   });
 }
@@ -92,8 +91,63 @@ function restUpdate(req, res, next) {
   }
 }
 
+function getEmployees(req, res, next) {
+  if (req.session.user.is_admin) {
+    const renderObject = {};
+    Promise.all([
+    knex('restaurants').where('restaurants.id', req.params.id),
+    knex('employees').where('employees.id', req.params.employeeID)
+    ])
+    .then(result => {
+      renderObject.rest = result[0][0];
+      renderObject.employee = result[1][0];
+      renderObject.userName = req.session.user.first_name;
+      renderObject.is_admin = req.session.user.is_admin;
+      res.status(200).render('restaurants/edit-employee', renderObject);
+    });
+  } else {
+    res.status(550).json({error: 'You do not have permission to do that.'});
+  }
+}
+function updateEmployees(req, res, next) {
+  if (req.session.user.is_admin) {
+    const employeeID = req.body.id;
+    const updatedFirstName = req.body.first_name;
+    const updatedLastName = req.body.last_name;
+    const updatedRole = req.body.role;
+    knex('employees')
+    .update({
+      first_name: updatedFirstName,
+      last_name: updatedLastName,
+      role: updatedRole
+    })
+    .where('id', employeeID)
+    .then(() => {
+      res.json({message: 'Success'});
+    });
+  } else {
+    res.status(550).json({error: 'You do not have permission to do that.'});
+  }
+}
+
+function deleteEmployees(req, res, next) {
+  if (req.session.user.is_admin) {
+    knex('employees')
+    .del()
+    .where('id', req.params.employeeID)
+    .then(() => {
+      res.json({message: 'Success'});
+    });
+  } else {
+    res.status(550).json({error: 'You do not have permission to do that.'});
+  }
+}
+
 module.exports = {
   oneRest,
   restUpdate,
-  oneRestDelete
+  oneRestDelete,
+  getEmployees,
+  updateEmployees,
+  deleteEmployees
 };

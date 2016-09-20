@@ -2,7 +2,7 @@ const knex = require('../db/knex');
 const bcrypt = require('bcryptjs');
 
 function passwordValidation (req, res, next) {
-  const userEmail = req.body.email;
+  const userEmail = req.body.email.toLowerCase();
   knex('users')
   .where('email', userEmail)
   .then ((user) => {
@@ -59,7 +59,7 @@ function createUser(req, userObject) {
   var newUser = {
     first_name: req.first_name,
     last_name: req.last_name,
-    email: req.email,
+    email: req.email.toLowerCase(),
     password: `${pass}`,
     is_admin: req.is_admin || false
   };
@@ -67,8 +67,6 @@ function createUser(req, userObject) {
 }
 
 function checkUser(req, res, next) {
-  console.log('in checkerUser function!!!!');
-  console.log(req.session.user);
   if (!req.session.user) {
     res.render('/signIn', {
       loginError: 'You must be logged in to do that.'

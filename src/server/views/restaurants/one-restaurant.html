@@ -40,7 +40,12 @@
         <h2>Employees</h2>
         <br>
         {% for employee in employees %}
-        <h4>{{employee.role}}: <small>{{employee.first_name}} {{employee.last_name}}</small></h4>
+        <div class="col-md-12 edit-delete">
+          <h4>{{employee.role}}: <small>{{employee.first_name}} {{employee.last_name}}
+            <a style="float: right" href="#" id="delete-employee" data-id="{{employee.id}}"> Delete</a>
+            <a style="float: right" href="/restaurant/{{rest.id}}/edit-employee/{{employee.id}}">Edit |</a>
+          </small></h4>
+        </div>
         <br>
         {% endfor %}
       </div>
