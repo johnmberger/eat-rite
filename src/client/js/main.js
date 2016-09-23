@@ -8,6 +8,12 @@ $.fn.stars = function() {
   });
 };
 
+$(document).ready(function () {
+  $('.navbar-toggle').on('click', function () {
+    $(this).toggleClass('active');
+  });
+});
+
 (function() {
   $('span.stars').stars();
 })();
